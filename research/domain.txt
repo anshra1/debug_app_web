@@ -1,0 +1,96 @@
+
+
+String id
+enum ErrorPriorty
+String tags
+Class categorization
+Class Project 1. flutter version 2. dart Version 3. ProjectName 
+
+String rootCauseLineNumber
+String What is the problemName
+String humanDescripation
+String StackTrace
+-------------------------------------
+List of similarProblems
+List of solution
+
+
+String surroundingCode
+int similarityScore - check based on similar tags or other
+Code likeSnippetOrScreenShotOrCodeEditor
+
+String embeddingText
+int howManyTimesErrorFound
+date issueDate
+Date FixedDate
+
+State New → In Progress → Resolved → Archived.
+Convert Error askableQuesionWithAi
+
+-- send only those error -- Selective error maybe more than 3
+in short ErrorProririty
+
+
+Visual Insights & Analytics
+Build a dashboard to visualize:
+Error trends (frequency over time).
+Common categories of errors.
+Most recurring errors and their solutions.
+Developer activity (e.g., resolved vs. unresolved errors).
+Tools to use:
+Flutter web or a dashboard library (e.g., Syncfusion or Chart.js).
+For server-side, integrate with Firebase Analytics or a visualization
+ tool like Supabase's built-in UI.
+
+
+Error Documentation System
+Automatically generate documentation for each error:
+Include the error message, priority, tags, possible causes, and
+ solutions.
+Format it as Markdown or HTML.
+Store in Superbase or integrate with your Notion or knowledge system.
+
+16. Implement NLP for Root Cause Analysis
+Add a root cause analysis layer:
+Use NLP models to extract the most likely cause from stack traces or logs.
+Highlight the key part of the stack trace or code where the error originated.
+
+
+int ItWorkedOrNot
+List listOfUrlsOfSolutions
+
+-- Give solution according to latest version flutter sorting
+-- Build a Search System
+When a new error occurs:
+
+Encode it using the model.
+Compare its embedding with your stored embeddings in Superbase.
+Retrieve the most similar errors and their solutions.
+
+-- 
+
+
+
+Host App
+1. Home Screen Current Error in last 30 min
+2. 
+
+1. fuzzywuzzy
+2. lightweight ML model for more accurate 
+    similarity detection as your error database grows.
+
+3. What are Embeddings?
+
+4. Use cosine similarity to measure how close two error embeddings 
+are:
+
+5. Rules based System
+
+6. compare one error to existing error
+7. rule-based system combined with similarity matching
+
+8. . Adjust Similarity Threshold Dynamically
+Instead of using a fixed similarity threshold (e.g., 80%), make it dynamic based on
+
+
+** Scale with Faiss for Large Databases

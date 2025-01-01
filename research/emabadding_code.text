@@ -1,0 +1,86 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+class EmbeddingService {
+  final SupabaseClient supabase;
+
+  EmbeddingService({required this.supabase});
+
+  // Store document with embedding
+  Future<void> storeDocument(String content) async {
+    try {
+      await supabase
+          .from('documents')
+          .insert({
+            'content': content,
+          })
+          .select();
+      
+      // Supabase will automatically generate the embedding
+    } catch (e) {
+      throw Exception('Failed to store document: $e');
+    }
+  }
+
+  // Find similar documents
+  Future<List<Map<String, dynamic>>> findSimilarDocuments(
+    String queryText, {
+    int limit = 5,
+    double threshold = 0.78,
+  }) async {
+    try {
+      final response = await supabase
+          .rpc('match_documents', params: {
+            'query_text': queryText,  // Just pass the text, Supabase handles the embedding
+            'match_threshold': threshold,
+            'match_count': limit,
+          });
+
+      return List<Map<String, dynamic>>.from(response.data ?? []);
+    } catch (e) {
+      throw Exception('Failed to find similar documents: $e');
+    }
+  }
+}
+
+-- Enable the pgvector extension
+create extension vector;
+
+-- Create the documents table with text embedding generation
+create table documents (
+  id bigserial primary key,
+  content text,
+  embedding vector(384)  -- Supabase uses a 384-dimension embedding
+);
+
+-- Add a trigger to automatically generate embeddings
+create trigger documents_trigger_embedding
+before insert or update on documents
+for each row execute function generate_embedding(content);
+
+-- Create the similarity search function
+create function match_documents(
+  query_text text,
+  match_threshold float,
+  match_count int
+)
+returns table (
+  id bigint,
+  content text,
+  similarity float
+)
+language plpgsql
+as $$
+begin
+  return query
+  select
+    id,
+    content,
+    1 - (documents.embedding <=> embedding_vector) as similarity
+  from 
+    documents,
+    generate_embedding(query_text) embedding_vector
+  where 1 - (documents.embedding <=> embedding_vector) > match_threshold
+  order by similarity desc
+  limit match_count;
+end;
+$$;

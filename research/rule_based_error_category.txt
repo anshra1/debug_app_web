@@ -1,0 +1,82 @@
+class ErrorProcessor {
+  String categorizeError(String errorMessage) {
+    if (errorMessage.contains("SocketException")) {
+      return "Network Error";
+    } else if (errorMessage.contains("MissingPluginException")) {
+      return "Dependency Error";
+    } else if (errorMessage.contains("NoSuchMethodError")) {
+      return "Logic Error";
+    } else if (errorMessage.contains("DatabaseException")) {
+      return "Database Error";
+    } else {
+      return "Uncategorized";
+    }
+  }
+
+  int assignPriority(String category, bool isCritical, int frequency) {
+    int priority = 0;
+
+    // Base weight for categories
+    switch (category) {
+      case "Network Error":
+        priority += 3;
+        break;
+      case "Database Error":
+        priority += 4;
+        break;
+      case "Logic Error":
+        priority += 2;
+        break;
+      case "Dependency Error":
+        priority += 1;
+        break;
+      default:
+        priority += 1; // Default weight
+    }
+
+    // Add severity weight
+    if (isCritical) {
+      priority += 5;
+    }
+
+    // Add frequency weight
+    priority += frequency;
+
+    return priority;
+  }
+}
+
+void main() {
+  var processor = ErrorProcessor();
+
+  // Example error
+  String errorMessage = "SocketException: Failed host lookup";
+  bool isCritical = true;
+  int frequency = 10;
+
+  // Categorize error
+  String category = processor.categorizeError(errorMessage);
+  print("Category: $category");
+
+  // Assign priority
+  int priority = processor.assignPriority(category, isCritical, frequency);
+  print("Priority: $priority");
+}
+
+
+
+Stacktrace/Keyword	Error Category	Priority (Default)
+SocketException	Network Error	High
+MissingPluginException	Dependency Error	Medium
+NoSuchMethodError	Logic Error	Medium
+TimeoutException	Performance Issue	High
+DatabaseException	Database Error	High
+RenderFlex	UI/Layout Issue	Low
+
+Class categorization
+Use a classification model (e.g., a fine-tuned BERT model) to assign
+ errors to predefined categories.
+ Use a pre-trained model (e.g., BERT, DistilBERT) to process the 
+ error message and stack trace.
+ rule based error categories
+ Use regex patterns to match stack trace elements and classify errors.
