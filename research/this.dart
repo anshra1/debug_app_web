@@ -22,7 +22,7 @@ class ErrorProcessor {
   };
 
   String categorizeError(String errorMessage) {
-    for (var entry in _errorPatterns.entries) {
+    for (final entry in _errorPatterns.entries) {
       if (errorMessage.contains(entry.key)) {
         return entry.value;
       }
@@ -31,16 +31,16 @@ class ErrorProcessor {
   }
 
   int assignPriority(String category, bool isCritical, int frequency) {
-    int basePriority = _basePriorities[category] ?? 1;
-    int criticalityFactor = isCritical ? 2 : 1;
-    int frequencyFactor = frequency > 5 ? 2 : 1;
+    final basePriority = _basePriorities[category] ?? 1;
+    final criticalityFactor = isCritical ? 2 : 1;
+    final frequencyFactor = frequency > 5 ? 2 : 1;
 
     return basePriority * criticalityFactor * frequencyFactor;
   }
 
   void processError(dynamic error, StackTrace stackTrace) {
-    var chain = Chain.forTrace(stackTrace);
-    var trace = chain.terse;
+    final chain = Chain.forTrace(stackTrace);
+    final trace = chain.terse;
     print('Error category: ${categorizeError(error.toString())}');
     print('Stack trace:\n$trace');
   }

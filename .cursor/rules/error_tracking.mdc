@@ -1,0 +1,41 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Error Tracking Feature Documentation
+
+## Overview
+The error tracking feature follows the MVVM (Model-View-ViewModel) architecture pattern for managing and displaying error data received from client applications.
+
+## Key Components
+
+### Models
+- [receiver_model.dart](mdc:lib/features/error_tracking_mvvm/model/receiver_model.dart): Defines `ReceivedErrorModel` for storing error data including:
+  - Error details (root cause, line number, stack trace)
+  - Timestamp of receipt
+  - Device information
+
+### ViewModels
+- [error_receiver_view_model.dart](mdc:lib/features/error_tracking_mvvm/viewmodels/error_receiver_view_model.dart): Manages error data and WebSocket server state:
+  - Maintains list of received errors
+  - Controls WebSocket server lifecycle
+  - Tracks connected clients
+  - Provides server configuration options
+
+### Widgets
+- [error_list_widget.dart](mdc:lib/features/error_tracking_mvvm/widgets/error_list_widget.dart): UI components for displaying errors:
+  - `ErrorListWidget`: Main list view of all errors
+  - `ErrorListItem`: Expandable tile showing error details
+
+## Usage Flow
+1. The ViewModel initializes the WebSocket server
+2. Client applications connect and send error data
+3. Received errors are processed and stored in the ViewModel
+4. The UI automatically updates to display new errors through Provider pattern
+
+## Implementation Notes
+- Uses Provider for state management
+- Implements expandable error details for better UX
+- Formats timestamps using intl package
+- Supports real-time error monitoring

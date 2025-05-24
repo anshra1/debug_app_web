@@ -13,12 +13,9 @@ String StackTrace
 -------------------------------------
 List of similarProblems
 List of solution
-
-
 String surroundingCode
 int similarityScore - check based on similar tags or other
 Code likeSnippetOrScreenShotOrCodeEditor
-
 String embeddingText
 int howManyTimesErrorFound
 date issueDate
@@ -29,6 +26,8 @@ Convert Error askableQuesionWithAi
 
 -- send only those error -- Selective error maybe more than 3
 in short ErrorProririty
+
+
 
 
 Visual Insights & Analytics
