@@ -4,6 +4,7 @@ import 'package:debug_app_web/core/routes/route_name.dart';
 import 'package:debug_app_web/features/home/presentation/cubit/server_cubit.dart';
 import 'package:debug_app_web/features/home/presentation/pages/home_page.dart';
 import 'package:debug_app_web/features/home/presentation/views/setting/setting_view.dart';
+import 'package:debug_app_web/features/setting/pages/setting_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -48,7 +49,7 @@ class AppRouter {
         path: RoutesName.setting,
         name: RoutesName.setting,
         pageBuilder: (_, state) {
-          return _buildTransition(child: const SettingView(), state: state);
+          return _buildTransition(child: const SettingHomepage(), state: state);
         },
       ),
     ],

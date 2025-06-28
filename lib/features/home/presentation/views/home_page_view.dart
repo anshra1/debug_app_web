@@ -1,17 +1,16 @@
 import 'package:debug_app_web/core/config/central_ui.dart';
-import 'package:debug_app_web/core/routes/route_name.dart';
 import 'package:debug_app_web/core/utils/helpers/local_db_helper.dart';
 import 'package:debug_app_web/core/widgets/atoms/display/conditional_widget.dart';
+import 'package:debug_app_web/features/apperence/cubit/appearance_cubit.dart';
 import 'package:debug_app_web/features/home/domain/entity/error_tracking.dart';
 import 'package:debug_app_web/features/home/presentation/cubit/server_cubit.dart';
 import 'package:debug_app_web/features/home/presentation/views/error_card/error_card_view.dart';
 import 'package:debug_app_web/features/home/presentation/views/side_bar/side_bar_view.dart';
 import 'package:debug_app_web/features/home/presentation/views/solution_card/solution_card_view.dart';
 import 'package:debug_app_web/features/home/presentation/views/top_bar/top_bar_view.dart';
-import 'package:debug_app_web/features/theme_system.dart/cubit/appearance_cubit.dart';
+import 'package:debug_app_web/features/setting/pages/setting_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 const stackTrace = '''
@@ -99,7 +98,11 @@ class HomePageView extends HookWidget {
                         );
                   },
                   settings: () {
-                    context.push(RoutesName.setting);
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => const SettingHomepage(),
+                    );
+                    return;
                   },
                   notifications: () {},
                   showSideBar: () {

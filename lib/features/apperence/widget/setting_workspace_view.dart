@@ -1,5 +1,5 @@
-import 'package:debug_app_web/features/theme_system.dart/cubit/appearance_cubit.dart';
-import 'package:debug_app_web/features/theme_system.dart/cubit/apperence_state.dart';
+import 'package:debug_app_web/features/apperence/cubit/appearance_cubit.dart';
+import 'package:debug_app_web/features/apperence/cubit/apperence_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

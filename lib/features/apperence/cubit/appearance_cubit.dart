@@ -6,9 +6,9 @@ import 'dart:io';
 
 import 'package:debug_app_web/core/manager/file_manager/decoders/theme_decoder.dart';
 import 'package:debug_app_web/core/manager/file_manager/service/file_manager_service.dart';
-import 'package:debug_app_web/features/theme_system.dart/cubit/apperence_state.dart';
-import 'package:debug_app_web/features/theme_system.dart/models/app_theme_set.dart';
-import 'package:debug_app_web/features/theme_system.dart/utils/inbuilt_themes.dart';
+import 'package:debug_app_web/features/apperence/cubit/apperence_state.dart';
+import 'package:debug_app_web/features/apperence/models/app_theme_set.dart';
+import 'package:debug_app_web/features/apperence/utils/inbuilt_themes.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

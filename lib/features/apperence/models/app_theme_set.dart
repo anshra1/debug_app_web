@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:debug_app_web/features/theme_system.dart/models/app_theme_color_set.dart';
+import 'package:debug_app_web/features/apperence/models/app_theme_color_set.dart';
 import 'package:theme_ui_widgets/theme/data/shared.dart';
 import 'package:theme_ui_widgets/theme/definition/text_style/app_text_style.dart';
 import 'package:theme_ui_widgets/theme/definition/theme_data.dart';

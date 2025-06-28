@@ -1,9 +1,9 @@
 import 'package:debug_app_web/features/home/presentation/views/setting/apperence_section.dart';
 import 'package:debug_app_web/features/home/presentation/views/setting/header.dart';
-import 'package:debug_app_web/features/theme_system.dart/cubit/appearance_cubit.dart';
-import 'package:debug_app_web/features/theme_system.dart/cubit/apperence_state.dart';
-import 'package:debug_app_web/features/theme_system.dart/models/app_theme_set.dart';
-import 'package:debug_app_web/features/theme_system.dart/widget/main.dart';
+import 'package:debug_app_web/features/apperence/cubit/appearance_cubit.dart';
+import 'package:debug_app_web/features/apperence/cubit/apperence_state.dart';
+import 'package:debug_app_web/features/apperence/models/app_theme_set.dart';
+import 'package:debug_app_web/features/apperence/widget/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

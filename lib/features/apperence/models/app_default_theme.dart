@@ -9,8 +9,8 @@
 //
 // dart run script/generate_theme.dart
 //
-import 'package:debug_app_web/features/theme_system.dart/models/app_theme_builder.dart';
-import 'package:debug_app_web/features/theme_system.dart/models/app_theme_color_set.dart';
+import 'package:debug_app_web/features/apperence/models/app_theme_builder.dart';
+import 'package:debug_app_web/features/apperence/models/app_theme_color_set.dart';
 import 'package:flutter/material.dart';
 import 'package:theme_ui_widgets/theme/data/app_default/primitive.dart';
 import 'package:theme_ui_widgets/theme/definition/color_scheme/background_color_scheme.dart';

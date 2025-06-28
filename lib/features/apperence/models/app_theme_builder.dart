@@ -1,4 +1,4 @@
-import 'package:debug_app_web/features/theme_system.dart/models/app_theme_color_set.dart';
+import 'package:debug_app_web/features/apperence/models/app_theme_color_set.dart';
 
 abstract class AppThemeColorSetBuilder {
   const AppThemeColorSetBuilder();
