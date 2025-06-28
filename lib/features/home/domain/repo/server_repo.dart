@@ -1,5 +1,4 @@
-import 'package:debug_app_web/core/typesdef/typedefs.dart';
-import 'package:debug_app_web/features/home/domain/entity/current_error.dart';
+import 'package:debug_app_web/core/utils/typesdef/typedefs.dart';
 import 'package:debug_app_web/features/home/domain/entity/error_tracking.dart';
 
 abstract class ServerRepository {
@@ -15,7 +14,7 @@ abstract class ServerRepository {
 
   ResultStream<int> getConnectedClients();
 
-  ResultStream<CurrentError> getCurrentError();
+  ResultStream<ErrorTracking> getCurrentError();
 
   ResultStream<List<ErrorTracking>> getErrorTracking();
 }

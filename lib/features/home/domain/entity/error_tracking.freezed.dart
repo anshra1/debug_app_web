@@ -26,10 +26,11 @@ mixin _$ErrorTracking {
   CurrentError get currentError => throw _privateConstructorUsedError;
   @JsonKey(name: ErrorTrackingKeys.solutions)
   List<Solution> get solutions => throw _privateConstructorUsedError;
-  @JsonKey(name: ErrorTrackingKeys.errorPriority)
-  ErrorPriority get errorPriority => throw _privateConstructorUsedError;
   @JsonKey(name: ErrorTrackingKeys.errorCategory)
   ErrorCategory get errorCategory => throw _privateConstructorUsedError;
+  @JsonKey(name: ErrorTrackingKeys.errorColorCategory)
+  ErrorColorCategory get errorColorCategory =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: ErrorTrackingKeys.errorTags)
   List<String> get errorTags => throw _privateConstructorUsedError;
   @JsonKey(name: ErrorTrackingKeys.fingerPrintHashing)
@@ -57,10 +58,10 @@ abstract class $ErrorTrackingCopyWith<$Res> {
       {@JsonKey(name: ErrorTrackingKeys.id) String id,
       @JsonKey(name: ErrorTrackingKeys.currentError) CurrentError currentError,
       @JsonKey(name: ErrorTrackingKeys.solutions) List<Solution> solutions,
-      @JsonKey(name: ErrorTrackingKeys.errorPriority)
-      ErrorPriority errorPriority,
       @JsonKey(name: ErrorTrackingKeys.errorCategory)
       ErrorCategory errorCategory,
+      @JsonKey(name: ErrorTrackingKeys.errorColorCategory)
+      ErrorColorCategory errorColorCategory,
       @JsonKey(name: ErrorTrackingKeys.errorTags) List<String> errorTags,
       @JsonKey(name: ErrorTrackingKeys.fingerPrintHashing)
       String fingerPrintHashing,
@@ -87,8 +88,8 @@ class _$ErrorTrackingCopyWithImpl<$Res, $Val extends ErrorTracking>
     Object? id = null,
     Object? currentError = null,
     Object? solutions = null,
-    Object? errorPriority = null,
     Object? errorCategory = null,
+    Object? errorColorCategory = null,
     Object? errorTags = null,
     Object? fingerPrintHashing = null,
     Object? dates = null,
@@ -106,14 +107,14 @@ class _$ErrorTrackingCopyWithImpl<$Res, $Val extends ErrorTracking>
           ? _value.solutions
           : solutions // ignore: cast_nullable_to_non_nullable
               as List<Solution>,
-      errorPriority: null == errorPriority
-          ? _value.errorPriority
-          : errorPriority // ignore: cast_nullable_to_non_nullable
-              as ErrorPriority,
       errorCategory: null == errorCategory
           ? _value.errorCategory
           : errorCategory // ignore: cast_nullable_to_non_nullable
               as ErrorCategory,
+      errorColorCategory: null == errorColorCategory
+          ? _value.errorColorCategory
+          : errorColorCategory // ignore: cast_nullable_to_non_nullable
+              as ErrorColorCategory,
       errorTags: null == errorTags
           ? _value.errorTags
           : errorTags // ignore: cast_nullable_to_non_nullable
@@ -152,10 +153,10 @@ abstract class _$$ErrorTrackingImplCopyWith<$Res>
       {@JsonKey(name: ErrorTrackingKeys.id) String id,
       @JsonKey(name: ErrorTrackingKeys.currentError) CurrentError currentError,
       @JsonKey(name: ErrorTrackingKeys.solutions) List<Solution> solutions,
-      @JsonKey(name: ErrorTrackingKeys.errorPriority)
-      ErrorPriority errorPriority,
       @JsonKey(name: ErrorTrackingKeys.errorCategory)
       ErrorCategory errorCategory,
+      @JsonKey(name: ErrorTrackingKeys.errorColorCategory)
+      ErrorColorCategory errorColorCategory,
       @JsonKey(name: ErrorTrackingKeys.errorTags) List<String> errorTags,
       @JsonKey(name: ErrorTrackingKeys.fingerPrintHashing)
       String fingerPrintHashing,
@@ -181,8 +182,8 @@ class __$$ErrorTrackingImplCopyWithImpl<$Res>
     Object? id = null,
     Object? currentError = null,
     Object? solutions = null,
-    Object? errorPriority = null,
     Object? errorCategory = null,
+    Object? errorColorCategory = null,
     Object? errorTags = null,
     Object? fingerPrintHashing = null,
     Object? dates = null,
@@ -200,14 +201,14 @@ class __$$ErrorTrackingImplCopyWithImpl<$Res>
           ? _value.solutions
           : solutions // ignore: cast_nullable_to_non_nullable
               as List<Solution>,
-      errorPriority: null == errorPriority
-          ? _value.errorPriority
-          : errorPriority // ignore: cast_nullable_to_non_nullable
-              as ErrorPriority,
       errorCategory: null == errorCategory
           ? _value.errorCategory
           : errorCategory // ignore: cast_nullable_to_non_nullable
               as ErrorCategory,
+      errorColorCategory: null == errorColorCategory
+          ? _value.errorColorCategory
+          : errorColorCategory // ignore: cast_nullable_to_non_nullable
+              as ErrorColorCategory,
       errorTags: null == errorTags
           ? _value.errorTags
           : errorTags // ignore: cast_nullable_to_non_nullable
@@ -231,10 +232,10 @@ class _$ErrorTrackingImpl implements _ErrorTracking {
       {@JsonKey(name: ErrorTrackingKeys.id) required this.id,
       @JsonKey(name: ErrorTrackingKeys.currentError) required this.currentError,
       @JsonKey(name: ErrorTrackingKeys.solutions) required this.solutions,
-      @JsonKey(name: ErrorTrackingKeys.errorPriority)
-      required this.errorPriority,
       @JsonKey(name: ErrorTrackingKeys.errorCategory)
       required this.errorCategory,
+      @JsonKey(name: ErrorTrackingKeys.errorColorCategory)
+      required this.errorColorCategory,
       @JsonKey(name: ErrorTrackingKeys.errorTags) required this.errorTags,
       @JsonKey(name: ErrorTrackingKeys.fingerPrintHashing)
       required this.fingerPrintHashing,
@@ -253,11 +254,11 @@ class _$ErrorTrackingImpl implements _ErrorTracking {
   @JsonKey(name: ErrorTrackingKeys.solutions)
   final List<Solution> solutions;
   @override
-  @JsonKey(name: ErrorTrackingKeys.errorPriority)
-  final ErrorPriority errorPriority;
-  @override
   @JsonKey(name: ErrorTrackingKeys.errorCategory)
   final ErrorCategory errorCategory;
+  @override
+  @JsonKey(name: ErrorTrackingKeys.errorColorCategory)
+  final ErrorColorCategory errorColorCategory;
   @override
   @JsonKey(name: ErrorTrackingKeys.errorTags)
   final List<String> errorTags;
@@ -270,7 +271,7 @@ class _$ErrorTrackingImpl implements _ErrorTracking {
 
   @override
   String toString() {
-    return 'ErrorTracking(id: $id, currentError: $currentError, solutions: $solutions, errorPriority: $errorPriority, errorCategory: $errorCategory, errorTags: $errorTags, fingerPrintHashing: $fingerPrintHashing, dates: $dates)';
+    return 'ErrorTracking(id: $id, currentError: $currentError, solutions: $solutions, errorCategory: $errorCategory, errorColorCategory: $errorColorCategory, errorTags: $errorTags, fingerPrintHashing: $fingerPrintHashing, dates: $dates)';
   }
 
   @override
@@ -282,10 +283,10 @@ class _$ErrorTrackingImpl implements _ErrorTracking {
             (identical(other.currentError, currentError) ||
                 other.currentError == currentError) &&
             const DeepCollectionEquality().equals(other.solutions, solutions) &&
-            (identical(other.errorPriority, errorPriority) ||
-                other.errorPriority == errorPriority) &&
             (identical(other.errorCategory, errorCategory) ||
                 other.errorCategory == errorCategory) &&
+            (identical(other.errorColorCategory, errorColorCategory) ||
+                other.errorColorCategory == errorColorCategory) &&
             const DeepCollectionEquality().equals(other.errorTags, errorTags) &&
             (identical(other.fingerPrintHashing, fingerPrintHashing) ||
                 other.fingerPrintHashing == fingerPrintHashing) &&
@@ -299,8 +300,8 @@ class _$ErrorTrackingImpl implements _ErrorTracking {
       id,
       currentError,
       const DeepCollectionEquality().hash(solutions),
-      errorPriority,
       errorCategory,
+      errorColorCategory,
       const DeepCollectionEquality().hash(errorTags),
       fingerPrintHashing,
       const DeepCollectionEquality().hash(dates));
@@ -328,10 +329,10 @@ abstract class _ErrorTracking implements ErrorTracking {
       required final CurrentError currentError,
       @JsonKey(name: ErrorTrackingKeys.solutions)
       required final List<Solution> solutions,
-      @JsonKey(name: ErrorTrackingKeys.errorPriority)
-      required final ErrorPriority errorPriority,
       @JsonKey(name: ErrorTrackingKeys.errorCategory)
       required final ErrorCategory errorCategory,
+      @JsonKey(name: ErrorTrackingKeys.errorColorCategory)
+      required final ErrorColorCategory errorColorCategory,
       @JsonKey(name: ErrorTrackingKeys.errorTags)
       required final List<String> errorTags,
       @JsonKey(name: ErrorTrackingKeys.fingerPrintHashing)
@@ -352,11 +353,11 @@ abstract class _ErrorTracking implements ErrorTracking {
   @JsonKey(name: ErrorTrackingKeys.solutions)
   List<Solution> get solutions;
   @override
-  @JsonKey(name: ErrorTrackingKeys.errorPriority)
-  ErrorPriority get errorPriority;
-  @override
   @JsonKey(name: ErrorTrackingKeys.errorCategory)
   ErrorCategory get errorCategory;
+  @override
+  @JsonKey(name: ErrorTrackingKeys.errorColorCategory)
+  ErrorColorCategory get errorColorCategory;
   @override
   @JsonKey(name: ErrorTrackingKeys.errorTags)
   List<String> get errorTags;

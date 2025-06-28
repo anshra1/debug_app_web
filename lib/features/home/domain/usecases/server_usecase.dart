@@ -1,6 +1,5 @@
-import 'package:debug_app_web/core/typesdef/typedefs.dart';
-import 'package:debug_app_web/core/usecases/usecases.dart';
-import 'package:debug_app_web/features/home/domain/entity/current_error.dart';
+import 'package:debug_app_web/core/utils/typesdef/typedefs.dart';
+import 'package:debug_app_web/core/utils/usecases/usecases.dart';
 import 'package:debug_app_web/features/home/domain/entity/error_tracking.dart';
 import 'package:debug_app_web/features/home/domain/repo/server_repo.dart';
 
@@ -84,7 +83,7 @@ class GetConnectedClients extends StreamUseCaseWithoutParam<int> {
   }
 }
 
-class GetCurrentError extends StreamUseCaseWithoutParam<CurrentError> {
+class GetCurrentError extends StreamUseCaseWithoutParam<ErrorTracking> {
   GetCurrentError({
     required this.serverRepo,
   });
@@ -92,7 +91,7 @@ class GetCurrentError extends StreamUseCaseWithoutParam<CurrentError> {
   final ServerRepository serverRepo;
 
   @override
-  ResultStream<CurrentError> call() {
+  ResultStream<ErrorTracking> call() {
     return serverRepo.getCurrentError();
   }
 }

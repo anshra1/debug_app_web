@@ -1,8 +1,9 @@
-import 'package:debug_app_web/core/ic/injection_container.dart';
+import 'package:debug_app_web/core/di/depandency_injection.dart';
 import 'package:debug_app_web/core/pages/page_not_found.dart';
 import 'package:debug_app_web/core/routes/route_name.dart';
 import 'package:debug_app_web/features/home/presentation/cubit/server_cubit.dart';
 import 'package:debug_app_web/features/home/presentation/pages/home_page.dart';
+import 'package:debug_app_web/features/home/presentation/views/setting/setting_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -41,6 +42,13 @@ class AppRouter {
             ),
             state: state,
           );
+        },
+      ),
+      GoRoute(
+        path: RoutesName.setting,
+        name: RoutesName.setting,
+        pageBuilder: (_, state) {
+          return _buildTransition(child: const SettingView(), state: state);
         },
       ),
     ],

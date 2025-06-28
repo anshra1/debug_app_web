@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:debug_app_web/core/error/failure.dart';
-import 'package:debug_app_web/features/home/domain/entity/current_error.dart';
+import 'package:debug_app_web/features/home/domain/entity/error_tracking.dart';
 import 'package:debug_app_web/features/home/domain/usecases/server_usecase.dart';
 import 'package:debug_app_web/features/home/presentation/cubit/server_state.dart';
 
@@ -24,7 +24,7 @@ class ServerCubit extends Cubit<ServerState> {
   final GetCurrentError getCurrentError;
 
   StreamSubscription<Either<Failure, int>>? _connectedClientsSubscription;
-  StreamSubscription<Either<Failure, CurrentError>>? _currentErrorSubscription;
+  StreamSubscription<Either<Failure, ErrorTracking>>? _currentErrorSubscription;
 
   /// Sets up streams for connected clients and current error monitoring
   void _setupStreams() {
@@ -32,7 +32,7 @@ class ServerCubit extends Cubit<ServerState> {
       (either) {
         either.fold(
           (failure) => emit(ServerErrorState(failure.message)),
-          (count) => emit(ConnectedClientsDataState(count)),
+          (count) => emit(ConnectedClientsCountState(count)),
         );
       },
       onError: (Object error, StackTrace stackTrace) {
@@ -48,7 +48,7 @@ class ServerCubit extends Cubit<ServerState> {
         either.fold(
           (failure) => emit(ServerErrorState(failure.message)),
           (error) {
-          //  DebugLogger.instance.info('Current error: $error'); 
+            //  DebugLogger.instance.info('Current error: $error');
             emit(CurrentErrorDataState(error));
           },
         );
@@ -68,7 +68,7 @@ class ServerCubit extends Cubit<ServerState> {
     final result = await startServer(StartServerParams(host: host, port: port));
     result.fold(
       (failure) => emit(ServerErrorState(failure.message)),
-      (success) => emit(ServerDataState(host: host, port: port)),
+      (success) => emit(ServerRunningState(isServerRunning: success)),
     );
   }
 
@@ -78,7 +78,7 @@ class ServerCubit extends Cubit<ServerState> {
     final result = await stopServer();
     result.fold(
       (failure) => emit(ServerErrorState(failure.message)),
-      (success) => emit(const ServerIdleState()),
+      (success) => emit(const ServerRunningState(isServerRunning: false)),
     );
   }
 

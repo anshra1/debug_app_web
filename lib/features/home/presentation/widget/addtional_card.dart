@@ -1,84 +1,84 @@
+
+import 'package:debug_app_web/core/config/central_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AdditionalCard extends StatelessWidget {
-  const AdditionalCard({super.key});
+class AdditionalDetailsErrorCard extends StatelessWidget {
+  const AdditionalDetailsErrorCard({
+    required this.additionalInfo,
+    super.key,
+  });
+
+  final Map<String, String>? additionalInfo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      // mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // If we have additional information, show here in key and value pair
+        ...?additionalInfo?.entries.map(
+          (entry) => CardTextRow(
+            leftText: '${entry.key.isNotEmpty ? entry.key[0].toUpperCase() + entry.key.substring(1) : entry.key} :',
+            rightText: entry.value,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CardTextRow extends StatelessWidget {
+  const CardTextRow({
+    required this.leftText,
+    required this.rightText,
+    this.leftTextColor = UIConfig.errorCardTextColor,
+    this.rightTextColor = UIConfig.errorCardTextColor,
+    this.leftTextSize = 16,
+    this.rightTextSize = 18,
+    super.key,
+    this.rightTextStartAt = 120, // default fixed start
+  });
+  final String leftText;
+  final String rightText;
+  final double leftTextSize;
+  final double rightTextSize;
+  final Color leftTextColor;
+  final Color rightTextColor;
+  final double rightTextStartAt;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.red.shade100,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.red.shade200),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header with slightly darker background
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(12),
-              decoration: const BoxDecoration(
-                // color: Colors.red.shade100,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-              ),
-              child: Text(
-                'Additional Information',
-                style: GoogleFonts.inter(
-                  fontSize: 24,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.bold,
-                ),
+      padding: const EdgeInsets.only(top: 4, left: 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: rightTextStartAt,
+            child: Text(
+              leftText,
+              style: GoogleFonts.inter(
+                fontSize: leftTextSize,
+                color: leftTextColor,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 1,
               ),
             ),
-
-            // Content Section
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'MissingPluginException: No implementa'
-                    "tion found for method 'xyz' on channel"
-                    "'abc'",
-                    style: GoogleFonts.inter(
-                      fontSize: 20,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        const TextSpan(
-                          text: 'Path: ',
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'lib/features/home/presentation/pages/example_file.dart',
-                          style: GoogleFonts.inter(
-                            fontSize: 22,
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+          ),
+          Flexible(
+            child: Text(
+              rightText,
+              style: GoogleFonts.inter(
+                fontSize: rightTextSize,
+                color: rightTextColor,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

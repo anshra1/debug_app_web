@@ -3,11 +3,11 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  connectivity_plus
   desktop_lifecycle
   desktop_multi_window
   permission_handler_windows
   share_plus
-  sqlite3_flutter_libs
   url_launcher_windows
 )
 

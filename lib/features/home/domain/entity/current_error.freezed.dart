@@ -20,14 +20,16 @@ CurrentError _$CurrentErrorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CurrentError {
-  @JsonKey(name: CurrentErrorKeys.stackTrace)
-  String get stackTrace => throw _privateConstructorUsedError;
+  @JsonKey(name: CurrentErrorKeys.id)
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: CurrentErrorKeys.error)
   String get error => throw _privateConstructorUsedError;
-  @JsonKey(name: CurrentErrorKeys.environment)
-  ErrorEnvironment get environment => throw _privateConstructorUsedError;
-  @JsonKey(name: CurrentErrorKeys.date)
-  DateTime get date => throw _privateConstructorUsedError;
+  @JsonKey(name: CurrentErrorKeys.platform)
+  String get platform => throw _privateConstructorUsedError;
+  @JsonKey(name: CurrentErrorKeys.additionalInfo)
+  Map<String, String>? get additionalInfo => throw _privateConstructorUsedError;
+  @JsonKey(name: CurrentErrorKeys.stackTrace)
+  String? get stackTrace => throw _privateConstructorUsedError;
 
   /// Serializes this CurrentError to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,12 +48,12 @@ abstract class $CurrentErrorCopyWith<$Res> {
       _$CurrentErrorCopyWithImpl<$Res, CurrentError>;
   @useResult
   $Res call(
-      {@JsonKey(name: CurrentErrorKeys.stackTrace) String stackTrace,
+      {@JsonKey(name: CurrentErrorKeys.id) String id,
       @JsonKey(name: CurrentErrorKeys.error) String error,
-      @JsonKey(name: CurrentErrorKeys.environment) ErrorEnvironment environment,
-      @JsonKey(name: CurrentErrorKeys.date) DateTime date});
-
-  $ErrorEnvironmentCopyWith<$Res> get environment;
+      @JsonKey(name: CurrentErrorKeys.platform) String platform,
+      @JsonKey(name: CurrentErrorKeys.additionalInfo)
+      Map<String, String>? additionalInfo,
+      @JsonKey(name: CurrentErrorKeys.stackTrace) String? stackTrace});
 }
 
 /// @nodoc
@@ -69,39 +71,34 @@ class _$CurrentErrorCopyWithImpl<$Res, $Val extends CurrentError>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? stackTrace = null,
+    Object? id = null,
     Object? error = null,
-    Object? environment = null,
-    Object? date = null,
+    Object? platform = null,
+    Object? additionalInfo = freezed,
+    Object? stackTrace = freezed,
   }) {
     return _then(_value.copyWith(
-      stackTrace: null == stackTrace
-          ? _value.stackTrace
-          : stackTrace // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
-      environment: null == environment
-          ? _value.environment
-          : environment // ignore: cast_nullable_to_non_nullable
-              as ErrorEnvironment,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      platform: null == platform
+          ? _value.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String,
+      additionalInfo: freezed == additionalInfo
+          ? _value.additionalInfo
+          : additionalInfo // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      stackTrace: freezed == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  /// Create a copy of CurrentError
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ErrorEnvironmentCopyWith<$Res> get environment {
-    return $ErrorEnvironmentCopyWith<$Res>(_value.environment, (value) {
-      return _then(_value.copyWith(environment: value) as $Val);
-    });
   }
 }
 
@@ -114,13 +111,12 @@ abstract class _$$CurrentErrorImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: CurrentErrorKeys.stackTrace) String stackTrace,
+      {@JsonKey(name: CurrentErrorKeys.id) String id,
       @JsonKey(name: CurrentErrorKeys.error) String error,
-      @JsonKey(name: CurrentErrorKeys.environment) ErrorEnvironment environment,
-      @JsonKey(name: CurrentErrorKeys.date) DateTime date});
-
-  @override
-  $ErrorEnvironmentCopyWith<$Res> get environment;
+      @JsonKey(name: CurrentErrorKeys.platform) String platform,
+      @JsonKey(name: CurrentErrorKeys.additionalInfo)
+      Map<String, String>? additionalInfo,
+      @JsonKey(name: CurrentErrorKeys.stackTrace) String? stackTrace});
 }
 
 /// @nodoc
@@ -136,28 +132,33 @@ class __$$CurrentErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? stackTrace = null,
+    Object? id = null,
     Object? error = null,
-    Object? environment = null,
-    Object? date = null,
+    Object? platform = null,
+    Object? additionalInfo = freezed,
+    Object? stackTrace = freezed,
   }) {
     return _then(_$CurrentErrorImpl(
-      stackTrace: null == stackTrace
-          ? _value.stackTrace
-          : stackTrace // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
-      environment: null == environment
-          ? _value.environment
-          : environment // ignore: cast_nullable_to_non_nullable
-              as ErrorEnvironment,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      platform: null == platform
+          ? _value.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String,
+      additionalInfo: freezed == additionalInfo
+          ? _value._additionalInfo
+          : additionalInfo // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      stackTrace: freezed == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -166,30 +167,44 @@ class __$$CurrentErrorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CurrentErrorImpl implements _CurrentError {
   const _$CurrentErrorImpl(
-      {@JsonKey(name: CurrentErrorKeys.stackTrace) required this.stackTrace,
+      {@JsonKey(name: CurrentErrorKeys.id) required this.id,
       @JsonKey(name: CurrentErrorKeys.error) required this.error,
-      @JsonKey(name: CurrentErrorKeys.environment) required this.environment,
-      @JsonKey(name: CurrentErrorKeys.date) required this.date});
+      @JsonKey(name: CurrentErrorKeys.platform) required this.platform,
+      @JsonKey(name: CurrentErrorKeys.additionalInfo)
+      required final Map<String, String>? additionalInfo,
+      @JsonKey(name: CurrentErrorKeys.stackTrace) this.stackTrace})
+      : _additionalInfo = additionalInfo;
 
   factory _$CurrentErrorImpl.fromJson(Map<String, dynamic> json) =>
       _$$CurrentErrorImplFromJson(json);
 
   @override
-  @JsonKey(name: CurrentErrorKeys.stackTrace)
-  final String stackTrace;
+  @JsonKey(name: CurrentErrorKeys.id)
+  final String id;
   @override
   @JsonKey(name: CurrentErrorKeys.error)
   final String error;
   @override
-  @JsonKey(name: CurrentErrorKeys.environment)
-  final ErrorEnvironment environment;
+  @JsonKey(name: CurrentErrorKeys.platform)
+  final String platform;
+  final Map<String, String>? _additionalInfo;
   @override
-  @JsonKey(name: CurrentErrorKeys.date)
-  final DateTime date;
+  @JsonKey(name: CurrentErrorKeys.additionalInfo)
+  Map<String, String>? get additionalInfo {
+    final value = _additionalInfo;
+    if (value == null) return null;
+    if (_additionalInfo is EqualUnmodifiableMapView) return _additionalInfo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  @JsonKey(name: CurrentErrorKeys.stackTrace)
+  final String? stackTrace;
 
   @override
   String toString() {
-    return 'CurrentError(stackTrace: $stackTrace, error: $error, environment: $environment, date: $date)';
+    return 'CurrentError(id: $id, error: $error, platform: $platform, additionalInfo: $additionalInfo, stackTrace: $stackTrace)';
   }
 
   @override
@@ -197,18 +212,20 @@ class _$CurrentErrorImpl implements _CurrentError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CurrentErrorImpl &&
-            (identical(other.stackTrace, stackTrace) ||
-                other.stackTrace == stackTrace) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.error, error) || other.error == error) &&
-            (identical(other.environment, environment) ||
-                other.environment == environment) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            const DeepCollectionEquality()
+                .equals(other._additionalInfo, _additionalInfo) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, stackTrace, error, environment, date);
+  int get hashCode => Object.hash(runtimeType, id, error, platform,
+      const DeepCollectionEquality().hash(_additionalInfo), stackTrace);
 
   /// Create a copy of CurrentError
   /// with the given fields replaced by the non-null parameter values.
@@ -228,29 +245,32 @@ class _$CurrentErrorImpl implements _CurrentError {
 
 abstract class _CurrentError implements CurrentError {
   const factory _CurrentError(
-          {@JsonKey(name: CurrentErrorKeys.stackTrace)
-          required final String stackTrace,
-          @JsonKey(name: CurrentErrorKeys.error) required final String error,
-          @JsonKey(name: CurrentErrorKeys.environment)
-          required final ErrorEnvironment environment,
-          @JsonKey(name: CurrentErrorKeys.date) required final DateTime date}) =
-      _$CurrentErrorImpl;
+      {@JsonKey(name: CurrentErrorKeys.id) required final String id,
+      @JsonKey(name: CurrentErrorKeys.error) required final String error,
+      @JsonKey(name: CurrentErrorKeys.platform) required final String platform,
+      @JsonKey(name: CurrentErrorKeys.additionalInfo)
+      required final Map<String, String>? additionalInfo,
+      @JsonKey(name: CurrentErrorKeys.stackTrace)
+      final String? stackTrace}) = _$CurrentErrorImpl;
 
   factory _CurrentError.fromJson(Map<String, dynamic> json) =
       _$CurrentErrorImpl.fromJson;
 
   @override
-  @JsonKey(name: CurrentErrorKeys.stackTrace)
-  String get stackTrace;
+  @JsonKey(name: CurrentErrorKeys.id)
+  String get id;
   @override
   @JsonKey(name: CurrentErrorKeys.error)
   String get error;
   @override
-  @JsonKey(name: CurrentErrorKeys.environment)
-  ErrorEnvironment get environment;
+  @JsonKey(name: CurrentErrorKeys.platform)
+  String get platform;
   @override
-  @JsonKey(name: CurrentErrorKeys.date)
-  DateTime get date;
+  @JsonKey(name: CurrentErrorKeys.additionalInfo)
+  Map<String, String>? get additionalInfo;
+  @override
+  @JsonKey(name: CurrentErrorKeys.stackTrace)
+  String? get stackTrace;
 
   /// Create a copy of CurrentError
   /// with the given fields replaced by the non-null parameter values.

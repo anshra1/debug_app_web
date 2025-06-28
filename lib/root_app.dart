@@ -1,14 +1,16 @@
 // lib/src/app/root_app.dart
 import 'package:baby_package/baby_package.dart';
 import 'package:debug_app_web/core/routes/routes.dart';
-import 'package:debug_app_web/core/theme/dark_theme.dart';
-import 'package:debug_app_web/core/theme/light_theme.dart';
-import 'package:debug_app_web/core/theme/theme_provider.dart';
-import 'package:debug_app_web/core/utils/dismiss_keyboard.dart';
+import 'package:debug_app_web/core/theme/themes/dark_theme.dart';
+import 'package:debug_app_web/core/theme/themes/light_theme.dart';
+import 'package:debug_app_web/core/utils/utils/dismiss_keyboard.dart';
+import 'package:debug_app_web/features/theme_system.dart/cubit/appearance_cubit.dart';
+import 'package:debug_app_web/features/theme_system.dart/cubit/apperence_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+import 'package:theme_ui_widgets/theme/app_theme.dart';
 
 class AppConfig {
   const AppConfig._();
@@ -25,13 +27,13 @@ class RootApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        // ChangeNotifierProvider(create: (_) => ConnectivityProvider()),
-        // Provider<AnalyticsService>(create: (_) => AnalyticsService()),
-        // Provider<CrashReportingService>(create: (_) => CrashReportingService()),
-      ],
+    
+    return BlocProvider(
+      create: (context) {
+        final cubit = AppearanceCubit()..init();
+        // Initialize asynchronously - state will update when ready
+        return cubit;
+      },
       child: ScreenUtilInit(
         designSize: AppConfig.designSize,
         minTextAdapt: true,
@@ -49,38 +51,45 @@ class AppContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = context.watch<ThemeProvider>();
-    final isDark = themeProvider.isDarkMode;
+    return BlocBuilder<AppearanceCubit, AppearanceState>(
+      builder: (context, state) {
+        final appearanceCubit = context.read<AppearanceCubit>();
+        final isDark = appearanceCubit.isDarkMode;
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: isDark.systemOverlayStyle,
-      child: DismissKeyboard(
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: AppConfig.appName,
-          theme: LightTheme.theme,
-          darkTheme: DarkTheme.theme,
-          themeMode: themeProvider.currentMode,
-          routerConfig: AppRouter.router,
-          //
-          builder: (context, child) {
-            final textScale = context.mediaQuery.textScaler.scale(1).clamp(
-                  AppConfig.minTextScale,
-                  AppConfig.maxTextScale,
-                );
+        return AppTheme(
+          data: appearanceCubit.currentThemeData,
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+            child: DismissKeyboard(
+              child: MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                title: AppConfig.appName,
+                theme: LightTheme.theme,
+                darkTheme: DarkTheme.theme,
+                themeMode: state.themeMode,
+                routerConfig: AppRouter.router,
+                //
+                builder: (context, child) {
+                  final textScale = context.mediaQuery.textScaler.scale(1).clamp(
+                        AppConfig.minTextScale,
+                        AppConfig.maxTextScale,
+                      );
 
-            return MediaQuery(
-              data: MediaQuery.of(context).copyWith(
-                platformBrightness: Theme.of(context).brightness,
-                textScaler: TextScaler.linear(textScale),
+                  return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(
+                      platformBrightness: Theme.of(context).brightness,
+                      textScaler: TextScaler.linear(textScale),
+                    ),
+                    child: ErrorBoundary(
+                      child: child ?? const SizedBox.shrink(),
+                    ),
+                  );
+                },
               ),
-              child: ErrorBoundary(
-                child: child ?? const SizedBox.shrink(),
-              ),
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

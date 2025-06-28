@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:debug_app_web/core/error/error_mapper.dart' show ErrorMapper;
 import 'package:debug_app_web/core/error/failure.dart';
-import 'package:debug_app_web/core/typesdef/typedefs.dart';
-import 'package:debug_app_web/features/home/data/datasource/server_remote_data_source.dart';
-import 'package:debug_app_web/features/home/domain/entity/current_error.dart';
+import 'package:debug_app_web/core/utils/typesdef/typedefs.dart';
+import 'package:debug_app_web/features/home/data/datasource/remote_data_source/server_rds.dart';
 import 'package:debug_app_web/features/home/domain/entity/error_tracking.dart';
 import 'package:debug_app_web/features/home/domain/repo/server_repo.dart';
 
@@ -49,9 +48,9 @@ class ServerRepoImpl implements ServerRepository {
   }
 
   @override
-  ResultStream<CurrentError> getCurrentError() {
+  ResultStream<ErrorTracking> getCurrentError() {
     return serverRepo.getCurrentError().transform(
-          StreamTransformer<CurrentError, Either<Failure, CurrentError>>.fromHandlers(
+          StreamTransformer<ErrorTracking, Either<Failure, ErrorTracking>>.fromHandlers(
             handleData: (data, sink) {
               sink.add(Right(data));
             },

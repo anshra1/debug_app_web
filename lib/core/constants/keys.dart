@@ -3,9 +3,9 @@ class CurrentErrorKeys {
   static const String errorTitle = 'errorTitle';
   static const String stackTrace = 'stackTrace';
   static const String error = 'error';
-  static const String environment = 'environment';
+  static const String platform = 'platform';
   static const String date = 'date';
-  static const String description = 'description';
+  static const String category = 'category';
   static const String additionalInfo = 'additionalInfo';
 }
 
@@ -37,7 +37,7 @@ class ErrorTrackingKeys {
   static const String totalOccurrences = 'totalOccurrences';
   static const String errorTags = 'errorTags';
   static const String fingerPrintHashing = 'fingerPrintHashing';
-  
+  static const String errorColorCategory = 'errorColorCategory';
 }
 
 class SolutionKeys {

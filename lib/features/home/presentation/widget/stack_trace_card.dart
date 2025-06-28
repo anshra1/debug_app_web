@@ -1,99 +1,112 @@
+import 'package:debug_app_web/core/config/central_ui.dart';
+import 'package:debug_app_web/core/utils/utils/stack_trace_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class StackTraceCard extends StatefulWidget {
-  const StackTraceCard({required this.trace, super.key});
-  final String trace;
-
-  @override
-  State<StackTraceCard> createState() => _StackTraceCardState();
-}
-
-class _StackTraceCardState extends State<StackTraceCard> {
-  bool _isExpanded = false;
+class StackTraceCard extends HookWidget {
+  const StackTraceCard({required this.stackTrace, super.key});
+  final StackTrace stackTrace;
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    final textColor = isDarkMode ? Colors.white70 : Colors.black87;
-    final backgroundColor = isDarkMode ? Colors.grey[900] : Colors.white;
-
-    // Split the trace into lines
-    final allLines = widget.trace.split('\n');
-    final visibleLines = _isExpanded ? allLines : allLines.take(3).toList();
+    final isExpanded = useState(false);
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-      padding: const EdgeInsets.all(16),
+      width: double.infinity,
       decoration: BoxDecoration(
-        color: backgroundColor,
+        //  color: Colors.blueAccent.shade200,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.15),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        border: Border.all(
+          color: UIConfig.borderColor,
+        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Stack Trace (${allLines.length})',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: textColor,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const StackTraceHeader(),
+            const Gap(8),
+            const Divider(
+              color: UIConfig.borderColor,
+              thickness: .8,
             ),
-          ),
-          const SizedBox(height: 12),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: visibleLines.isEmpty ? 0 : 0, // Changed to 0 instead of null
-              maxHeight: _isExpanded ? double.infinity : 100,
-            ),
-            child: SingleChildScrollView(
-              physics: _isExpanded ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: visibleLines.map((line) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 600,
+                minHeight: 300,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16).copyWith(top: 8, bottom: 8),
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(
+                    scrollbars: false,
+                  ),
+                  child: SingleChildScrollView(
                     child: Text(
-                      line,
-                      style: TextStyle(
-                        fontFamily: 'Monospace',
-                        fontSize: 18,
-                        color: textColor.withOpacity(0.8),
+                      isExpanded.value
+                          ? stackTrace.toString() // Full, readable stack trace
+                          : getShortStackTrace(stackTrace),
+                      style: const TextStyle(
+                        fontSize: UIConfig.stackTraceCardFontSize,
+                        color: UIConfig.stackTraceCardTextColor,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                  );
-                }).toList(),
+                  ),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: TextButton(
                 onPressed: () {
-                  setState(() {
-                    _isExpanded = !_isExpanded;
-                  });
+                  isExpanded.value = !isExpanded.value; // Update the state locally
                 },
                 child: Text(
-                  _isExpanded ? 'Show Less' : 'Show More',
-                  style: TextStyle(
-                    color: Colors.blueAccent.shade400,
+                  isExpanded.value ? 'Show Less' : 'Show More',
+                  style: const TextStyle(
+                    color: Colors.white,
                     fontSize: 16,
                   ),
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class StackTraceHeader extends StatelessWidget {
+  const StackTraceHeader({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Icon(
+          Icons.layers,
+          size: 28,
+          color: Colors.white,
+        ),
+        const SizedBox(width: 16),
+        Text(
+          'StackTrace',
+          style: GoogleFonts.inter(
+            fontSize: 24,
+            letterSpacing: 2,
+            fontWeight: FontWeight.bold,
+            color: Colors.white, // Replace textColor with a defined color
+          ),
+        ),
+      ],
     );
   }
 }

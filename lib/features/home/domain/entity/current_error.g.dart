@@ -8,19 +8,20 @@ part of 'current_error.dart';
 
 _$CurrentErrorImpl _$$CurrentErrorImplFromJson(Map<String, dynamic> json) =>
     _$CurrentErrorImpl(
-      stackTrace: json['stackTrace'] as String,
+      id: json['id'] as String,
       error: json['error'] as String,
-      environment: ErrorEnvironment.fromJson(
-          (json['environment'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(k, e as Object),
-      )),
-      date: DateTime.parse(json['date'] as String),
+      platform: json['platform'] as String,
+      additionalInfo: (json['additionalInfo'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
+      stackTrace: json['stackTrace'] as String?,
     );
 
 Map<String, dynamic> _$$CurrentErrorImplToJson(_$CurrentErrorImpl instance) =>
     <String, dynamic>{
-      'stackTrace': instance.stackTrace,
+      'id': instance.id,
       'error': instance.error,
-      'environment': instance.environment,
-      'date': instance.date.toIso8601String(),
+      'platform': instance.platform,
+      'additionalInfo': instance.additionalInfo,
+      'stackTrace': instance.stackTrace,
     };
