@@ -24,3 +24,4 @@ class SettingView extends StatelessWidget {
     );
   }
 }
+
