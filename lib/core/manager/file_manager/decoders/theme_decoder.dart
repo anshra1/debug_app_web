@@ -4,8 +4,8 @@ import 'dart:ui';
 
 import 'package:debug_app_web/core/manager/file_manager/interfaces/decoder.dart';
 import 'package:debug_app_web/core/utils/utils/hex_color_converter.dart';
-import 'package:debug_app_web/features/apperence/models/app_theme_color_set.dart';
-import 'package:debug_app_web/features/apperence/models/app_theme_set.dart';
+import 'package:debug_app_web/features/setting/workspace/models/app_theme_color_set.dart';
+import 'package:debug_app_web/features/setting/workspace/models/app_theme_set.dart';
 import 'package:path/path.dart' as path;
 import 'package:theme_ui_widgets/theme/definition/color_scheme/background_color_scheme.dart';
 import 'package:theme_ui_widgets/theme/definition/color_scheme/badge_color_scheme.dart';

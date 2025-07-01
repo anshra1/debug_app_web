@@ -1,0 +1,83 @@
+# Hooks + ListView Builder - Performance Guide
+
+## Core Rules
+1. Always use keys in builders
+2. Use HookWidget for list items
+3. Sync useState with useEffect when using props
+4. Use HookBuilder + useListenable for ValueNotifier integration
+
+
+class ListView extends HookWidget {
+  Widget build(context) {
+    final selected = useValueNotifier(defaultValue);
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return HookBuilder(
+          builder: (context) {
+            useListenable(selected);
+            return ItemWidget(
+              key: ValueKey(item.id), // Required
+              isSelected: selected.value == item,
+              onTap: () => selected.value = item,
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+// Item
+class ItemWidget extends HookWidget {
+  final bool isSelected;
+  
+  Widget build(context) {
+    final localSelected = useState(isSelected);
+    
+    useEffect(() {
+      localSelected.value = isSelected; // Sync prop to state
+      return null;
+    }, [isSelected]);
+    
+    return Container(
+      color: localSelected.value ? blue : transparent,
+      // ...
+    );
+  }
+}
+
+
+// ValueListenableBuilder way with ListViewBuilder
+
+  ValueListenableBuilder(
+   valueListenable: currentItem,
+   builder: (context, value, child) {
+     return SidebarItemWidget(
+       label: item.title,
+       icon: const Icon(Icons.settings),
+       config: SidebarItemWidgetConfig.defaultConfig(context),
+       isItemSelected: value == item,
+       onTap: () {
+         currentItem.value = item;
+         context.read<SettingCubit>().navigateTo(item);
+         },
+       );
+     },
+   ),
+          
+
+## Why This Works
+- Keys prevent widget recreation
+- HookBuilder triggers rebuilds on ValueNotifier changes
+- useEffect syncs props to local state
+- Only affected items rebuild, not entire ListView
+
+## Common Mistakes
+- No keys → widget identity lost
+- No useEffect → state out of sync
+- No HookBuilder → ValueNotifier changes ignored
+- useState without sync in list context
+
+
+
+

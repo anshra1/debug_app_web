@@ -1,5 +1,5 @@
-import 'package:debug_app_web/features/apperence/models/app_default_theme.dart';
-import 'package:debug_app_web/features/apperence/models/app_theme_set.dart';
+import 'package:debug_app_web/features/setting/workspace/theme/app_default_theme.dart';
+import 'package:debug_app_web/features/setting/workspace/models/app_theme_set.dart';
 
 const String defaultThemeName = 'default Theme';
 

@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'border_radius/border_radius.dart';
 import 'color_scheme/badge_color_scheme.dart';
 import 'color_scheme/color_scheme.dart';
 import 'shadow/shadow.dart';
 import 'spacing/spacing.dart';
 import 'text_style/app_text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'theme_data.freezed.dart';
 part 'theme_data.g.dart';
@@ -43,7 +44,7 @@ class AppThemeData with _$AppThemeData {
     double t,
   ) {
     return AppThemeData(
-      themeName: begin.themeName ,
+      themeName: begin.themeName,
       textColorScheme: begin.textColorScheme.lerpWith(
         end.textColorScheme,
         t,
@@ -92,8 +93,8 @@ class AppThemeData with _$AppThemeData {
   }
 
   AppThemeData lerpWith(AppThemeData other, double t) {
-   return AppThemeData.lerp(this, other, t);
- }
+    return AppThemeData.lerp(this, other, t);
+  }
 }
 
 /// [AppThemeBuilder] is used to build the light and dark themes. Extend
@@ -103,7 +104,6 @@ class AppThemeData with _$AppThemeData {
 /// See also:
 ///
 /// - [AppThemeData] for the main theme data class.
-
 
 // Utility methods for color conversion
 extension AppThemeDataUtils on AppThemeData {
@@ -119,4 +119,6 @@ extension AppThemeDataUtils on AppThemeData {
   String colorToHex(Color color) {
     return '#${(((color.a * 255).round() << 24) | ((color.r * 255).round() << 16) | ((color.g * 255).round() << 8) | (color.b * 255).round()).toRadixString(16).padLeft(8, '0')}';
   }
+
+ 
 }

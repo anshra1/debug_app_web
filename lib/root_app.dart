@@ -1,11 +1,10 @@
 // lib/src/app/root_app.dart
 import 'package:baby_package/baby_package.dart';
 import 'package:debug_app_web/core/routes/routes.dart';
-import 'package:debug_app_web/core/theme/themes/dark_theme.dart';
-import 'package:debug_app_web/core/theme/themes/light_theme.dart';
+import 'package:debug_app_web/core/false%20_t_h_e/apperence/apperence.dart';
 import 'package:debug_app_web/core/utils/utils/dismiss_keyboard.dart';
-import 'package:debug_app_web/features/apperence/cubit/appearance_cubit.dart';
-import 'package:debug_app_web/features/apperence/cubit/apperence_state.dart';
+import 'package:debug_app_web/features/setting/workspace/cubit/appearance_cubit.dart';
+import 'package:debug_app_web/features/setting/workspace/cubit/apperence_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +26,6 @@ class RootApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return BlocProvider(
       create: (context) {
         final cubit = AppearanceCubit()..init();
@@ -64,12 +62,17 @@ class AppContainer extends StatelessWidget {
               child: MaterialApp.router(
                 debugShowCheckedModeBanner: false,
                 title: AppConfig.appName,
-                theme: LightTheme.theme,
-                darkTheme: DarkTheme.theme,
+
+                theme: AppFlutterTheme.toFlutterTheme(
+                  appearanceCubit.currentThemeData,
+                  brightness: isDark ? Brightness.dark : Brightness.light,
+                  fontFamily: state.fontFamily,
+                ),
                 themeMode: state.themeMode,
                 routerConfig: AppRouter.router,
                 //
                 builder: (context, child) {
+              
                   final textScale = context.mediaQuery.textScaler.scale(1).clamp(
                         AppConfig.minTextScale,
                         AppConfig.maxTextScale,
