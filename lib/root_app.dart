@@ -1,7 +1,7 @@
 // lib/src/app/root_app.dart
 import 'package:baby_package/baby_package.dart';
-import 'package:debug_app_web/core/routes/routes.dart';
 import 'package:debug_app_web/core/false%20_t_h_e/apperence/apperence.dart';
+import 'package:debug_app_web/core/routes/routes.dart';
 import 'package:debug_app_web/core/utils/utils/dismiss_keyboard.dart';
 import 'package:debug_app_web/features/setting/workspace/cubit/appearance_cubit.dart';
 import 'package:debug_app_web/features/setting/workspace/cubit/apperence_state.dart';
@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:theme_ui_widgets/theme/app_theme.dart';
+import 'package:toastification/toast_src/core/toastification_overlay_state.dart';
 
 class AppConfig {
   const AppConfig._();
@@ -54,40 +55,41 @@ class AppContainer extends StatelessWidget {
         final appearanceCubit = context.read<AppearanceCubit>();
         final isDark = appearanceCubit.isDarkMode;
 
-        return AppTheme(
-          data: appearanceCubit.currentThemeData,
-          child: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
-            child: DismissKeyboard(
-              child: MaterialApp.router(
-                debugShowCheckedModeBanner: false,
-                title: AppConfig.appName,
-
-                theme: AppFlutterTheme.toFlutterTheme(
-                  appearanceCubit.currentThemeData,
-                  brightness: isDark ? Brightness.dark : Brightness.light,
-                  fontFamily: state.fontFamily,
+        return ToastificationWrapper(
+          child: AppTheme(
+            data: appearanceCubit.currentThemeData,
+            child: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+              child: DismissKeyboard(
+                child: MaterialApp.router(
+                  debugShowCheckedModeBanner: false,
+                  title: AppConfig.appName,
+          
+                  theme: AppFlutterTheme.toFlutterTheme(
+                    appearanceCubit.currentThemeData,
+                    brightness: isDark ? Brightness.dark : Brightness.light,
+                    fontFamily: state.fontFamily,
+                  ),
+                  themeMode: state.themeMode,
+                  routerConfig: AppRouter.router,
+                  //
+                  builder: (context, child) {
+                    final textScale = context.mediaQuery.textScaler.scale(1).clamp(
+                          AppConfig.minTextScale,
+                          AppConfig.maxTextScale,
+                        );
+          
+                    return MediaQuery(
+                      data: MediaQuery.of(context).copyWith(
+                        platformBrightness: Theme.of(context).brightness,
+                        textScaler: TextScaler.linear(textScale),
+                      ),
+                      child: ErrorBoundary(
+                        child: child ?? const SizedBox.shrink(),
+                      ),
+                    );
+                  },
                 ),
-                themeMode: state.themeMode,
-                routerConfig: AppRouter.router,
-                //
-                builder: (context, child) {
-              
-                  final textScale = context.mediaQuery.textScaler.scale(1).clamp(
-                        AppConfig.minTextScale,
-                        AppConfig.maxTextScale,
-                      );
-
-                  return MediaQuery(
-                    data: MediaQuery.of(context).copyWith(
-                      platformBrightness: Theme.of(context).brightness,
-                      textScaler: TextScaler.linear(textScale),
-                    ),
-                    child: ErrorBoundary(
-                      child: child ?? const SizedBox.shrink(),
-                    ),
-                  );
-                },
               ),
             ),
           ),

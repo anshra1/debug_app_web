@@ -132,8 +132,9 @@ class AppFlutterTheme {
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.hovered)) return fill.themeThickHover;
-            if (states.contains(WidgetState.disabled))
+            if (states.contains(WidgetState.disabled)) {
               return colorScheme.onSurface.withValues(alpha: 0.12);
+            }
             return colorScheme.primary; // Default
           }),
           foregroundColor: WidgetStateProperty.all(colorScheme.onPrimary),
@@ -176,8 +177,9 @@ class AppFlutterTheme {
             return colorScheme.onSurface;
           }),
           backgroundColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.hovered))
+            if (states.contains(WidgetState.hovered)) {
               return colorScheme.primary.withValues(alpha: 0.05);
+            }
             return Colors.transparent;
           }),
           side: WidgetStateProperty.resolveWith((states) {

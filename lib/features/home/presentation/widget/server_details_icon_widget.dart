@@ -85,13 +85,13 @@ class _ServerDetailsIconWidgetState extends State<ServerDetailsIconWidget> {
                     TextDisplayWithLabel(
                       labelText: 'IP ADDRESS',
                       tooltipText: 'IP ADDRESS',
-                      config: TextDisplayWithLabelConfig.defaultConfig(),
+                      config: TextDisplayWithLabelConfig.defaultConfig(context),
                       getText: () => ipAddress.value ?? '',
                     ),
                     const Gap(16),
                     TextFieldButtonWithLabel(
                       startingText: port.value ?? '',
-                      config: TextFieldButtonWithLabelConfig.defaultConfig(),
+                      config: TextFieldButtonWithLabelConfig.defaultConfig(context),
                       onTextSubmitted: (value) async {
                         final parsed = int.tryParse(value);
                         if (parsed != null && parsed >= 1024 && parsed <= 65535) {

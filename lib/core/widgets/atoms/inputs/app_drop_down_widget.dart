@@ -3,6 +3,260 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:theme_ui_widgets/theme/app_theme.dart';
 
 // =============================================================================
+// APP DROPDOWN WIDGET - USAGE DOCUMENTATION
+// =============================================================================
+
+/// # AppDropDownWidget Usage Guide
+///
+/// A comprehensive, production-ready dropdown widget with state-aware styling,
+/// animations, and extensive customization options.
+///
+/// ## 🚀 Basic Usage
+///
+/// ```dart
+/// final items = [
+///   SimpleDropdownItem('Option 1', 'option1'),
+///   SimpleDropdownItem('Option 2', 'option2'),
+///   SimpleDropdownItem('Option 3', 'option3'),
+/// ];
+///
+/// AppDrownDownWidget<String>(
+///   items: items,
+///   selectedValue: 'option1',
+///   onChanged: (item) => print('Selected: ${item?.label}'),
+///   config: AppDropdownWidgetConfig.defaultConfig(context),
+/// )
+/// ```
+///
+/// ## 📋 With Form Integration
+///
+/// ```dart
+/// // Using with BLoC for state management
+/// BlocBuilder<SomeCubit, SomeState>(
+///   builder: (context, state) {
+///     return AppDrownDownWidget<String>(
+///       items: fontItems,
+///       selectedValue: context.watch<AppearanceCubit>().state.fontFamily ?? 'System',
+///       onChanged: (item) => context.read<AppearanceCubit>().setFontFamily(item?.label ?? ''),
+///       hint: 'Select font family...',
+///       config: AppDropdownWidgetConfig.defaultConfig(context),
+///     );
+///   },
+/// )
+/// ```
+///
+/// ## 🎨 Full Configuration Example
+///
+/// ```dart
+/// AppDrownDownWidget<String>(
+///   items: items,
+///   selectedValue: currentValue,
+///   onChanged: (item) => handleSelection(item),
+///
+///   // Optional Properties
+///   label: 'Choose Option',                    // Label above dropdown
+///   hint: 'Select an option...',              // Placeholder text
+///   width: 300,                               // Fixed width (optional)
+///   height: 48,                               // Button height
+///   enabled: true,                            // Enable/disable interaction
+///   showClearButton: true,                    // Show X to clear selection
+///   isRequired: true,                         // Show * next to label
+///   errorText: 'Please select an option',    // Error message below
+///   maxMenuHeight: 200,                       // Max overlay height
+///   autofocus: false,                         // Auto-focus on creation
+///   showFocusRing: true,                      // Show accessibility focus ring
+///
+///   // Icons
+///   leadingIcon: Icon(Icons.font_download),   // Icon at start of button
+///
+///   // Styling
+///   config: AppDropdownWidgetConfig.defaultConfig(context),
+/// )
+/// ```
+///
+/// ## 🔧 Custom Items with Suffix Icons
+///
+/// ```dart
+/// final items = [
+///   SimpleDropdownItem(
+///     'Edit Item',
+///     'edit',
+///     suffixIcon: Icon(Icons.edit),
+///     onSuffixIconTap: () => editItem(),
+///   ),
+///   SimpleDropdownItem(
+///     'Delete Item',
+///     'delete',
+///     suffixIcon: Icon(Icons.delete, color: Colors.red),
+///     onSuffixIconTap: () => showDeleteDialog(),
+///   ),
+/// ];
+/// ```
+///
+/// ## 🎭 Custom Configuration
+///
+/// ```dart
+/// // Create custom config for special styling
+/// final customConfig = AppDropdownWidgetConfig.defaultConfig(context).copyWith(
+///   // Override specific properties
+///   backgroundColor: Colors.blue.shade50,
+///   borderColor: Colors.blue,
+///   borderRadius: 12,
+///   overlayElevation: 12,
+/// );
+///
+/// AppDrownDownWidget<String>(
+///   items: items,
+///   selectedValue: value,
+///   onChanged: onChanged,
+///   config: customConfig,
+/// )
+/// ```
+///
+/// ## 🏗️ Custom Item Types
+///
+/// ```dart
+/// // Create custom item class
+/// class ColorDropdownItem implements DropdownItem<Color> {
+///   final String label;
+///   final Color value;
+///   final Widget? suffixIcon;
+///   final VoidCallback? onSuffixIconTap;
+///
+///   const ColorDropdownItem(this.label, this.value, {
+///     this.suffixIcon,
+///     this.onSuffixIconTap,
+///   });
+/// }
+///
+/// // Usage
+/// final colorItems = [
+///   ColorDropdownItem('Red', Colors.red),
+///   ColorDropdownItem('Blue', Colors.blue),
+///   ColorDropdownItem('Green', Colors.green),
+/// ];
+///
+/// AppDrownDownWidget<Color>(
+///   items: colorItems,
+///   selectedValue: Colors.red,
+///   onChanged: (item) => setColor(item?.value),
+///   config: AppDropdownWidgetConfig.defaultConfig(context),
+/// )
+/// ```
+///
+/// ## 🔄 State Management Patterns
+///
+/// ### With context.watch() (Reactive)
+/// ```dart
+/// // ✅ Use for selectedValue - automatically updates when state changes
+/// selectedValue: context.watch<SomeCubit>().state.selectedValue,
+/// ```
+///
+/// ### With context.read() (One-time)
+/// ```dart
+/// // ✅ Use for onChanged - triggers actions without rebuilding
+/// onChanged: (item) => context.read<SomeCubit>().updateValue(item?.value),
+/// ```
+///
+/// ## 🎨 Styling Configuration Properties
+///
+/// ### Layout & Sizing
+/// - `padding`: Internal button padding
+/// - `borderRadius`: Corner roundness
+/// - `iconSize`: Size of dropdown arrow and leading icons
+/// - `clearIconSize`: Size of clear button (X)
+/// - `suffixIconSize`: Size of custom suffix icons
+/// - `overlaySpacing`: Gap between button and menu
+///
+/// ### Colors by State
+/// - **Normal**: `backgroundColor`, `borderColor`, `textColor`, `iconColor`
+/// - **Hover**: `hoverBackgroundColor`, `hoverBorderColor`, etc.
+/// - **Open**: `openBackgroundColor`, `openBorderColor`, etc.
+/// - **Disabled**: `disabledBackgroundColor`, `disabledBorderColor`, etc.
+/// - **Focused**: `focusedBorderColor`, `focusRingColor`
+///
+/// ### Menu Item Colors
+/// - **Normal**: `itemBackgroundColor`, `itemTextColor`, `itemIconColor`
+/// - **Hover**: `itemHoverBackgroundColor`, etc.
+/// - **Selected**: `itemSelectedBackgroundColor`, etc.
+/// - **Suffix Icons**: `suffixIconColor`, `suffixIconHoverColor`, etc.
+///
+/// ## ⚡ Performance Tips
+///
+/// 1. **Memoize Items**: Use `useMemoized()` for static item lists
+/// ```dart
+/// final items = useMemoized(() => staticItemList, []);
+/// ```
+///
+/// 2. **Debounced Actions**: For expensive operations in onChanged
+/// ```dart
+/// onChanged: (item) => debouncer.debounce(() => expensiveAction(item)),
+/// ```
+///
+/// 3. **Conditional Config**: Only create custom config when needed
+/// ```dart
+/// config: isCustomStyle
+///   ? customConfig
+///   : AppDropdownWidgetConfig.defaultConfig(context),
+/// ```
+///
+/// ## 🐛 Common Issues & Solutions
+///
+/// ### Dropdown doesn't update when state changes
+/// **Problem**: Using `context.read()` for selectedValue
+/// **Solution**: Use `context.watch()` for reactive updates
+///
+/// ### Wrong value being set
+/// **Problem**: Using `item?.value` when you need the display text
+/// **Solution**: Use `item?.label` for font names, display values
+///
+/// ### Suffix icon triggers item selection
+/// **Problem**: Click events bubble up to parent
+/// **Solution**: Widget handles this automatically with `HitTestBehavior.opaque`
+///
+/// ### Theme colors not updating
+/// **Problem**: Config created once and cached
+/// **Solution**: Always use `AppDropdownWidgetConfig.defaultConfig(context)` fresh
+///
+/// ## 🔗 Integration Examples
+///
+/// ### Theme Selection
+/// ```dart
+/// AppDrownDownWidget<String>(
+///   items: themeItems,
+///   selectedValue: context.watch<ThemeCubit>().state.selectedTheme,
+///   onChanged: (item) => context.read<ThemeCubit>().setTheme(item?.label),
+/// )
+/// ```
+///
+/// ### Font Selection
+/// ```dart
+/// AppDrownDownWidget<String>(
+///   items: fontItems,
+///   selectedValue: context.watch<AppearanceCubit>().state.fontFamily ?? 'System',
+///   onChanged: (item) => context.read<AppearanceCubit>().setFontFamily(item?.label ?? ''),
+///   leadingIcon: Icon(Icons.font_download),
+///   showClearButton: true,
+/// )
+/// ```
+///
+/// ### Language Selection with Custom Actions
+/// ```dart
+/// final languageItems = [
+///   SimpleDropdownItem(
+///     'English', 'en',
+///     suffixIcon: Icon(Icons.download),
+///     onSuffixIconTap: () => downloadLanguagePack('en'),
+///   ),
+///   SimpleDropdownItem(
+///     'Spanish', 'es',
+///     suffixIcon: Icon(Icons.download),
+///     onSuffixIconTap: () => downloadLanguagePack('es'),
+///   ),
+/// ];
+/// ```
+
+// =============================================================================
 // CONFIG CLASS FOR STYLING
 // =============================================================================
 
@@ -20,6 +274,8 @@ class AppDropdownWidgetConfig {
     required this.spacing,
     required this.iconSize,
     required this.clearIconSize,
+    required this.suffixIconSize,
+    required this.suffixIconSpacing,
     required this.overlaySpacing,
     required this.overlayPadding,
     required this.itemPadding,
@@ -80,6 +336,11 @@ class AppDropdownWidgetConfig {
     required this.requiredTextColor,
     required this.errorTextColor,
 
+    // Suffix Icon Colors
+    required this.suffixIconColor,
+    required this.suffixIconHoverColor,
+    required this.suffixIconSelectedColor,
+
     // Text Styles
     required this.textStyleNormal,
     required this.textStyleHover,
@@ -129,6 +390,8 @@ class AppDropdownWidgetConfig {
       spacing: theme.spacing.s,
       iconSize: 20,
       clearIconSize: 16,
+      suffixIconSize: 18,
+      suffixIconSpacing: theme.spacing.xs,
       overlaySpacing: 4,
       overlayPadding: EdgeInsets.all(theme.spacing.xs),
       itemPadding: EdgeInsets.symmetric(
@@ -191,6 +454,11 @@ class AppDropdownWidgetConfig {
       labelTextColor: text.primary,
       requiredTextColor: text.error,
       errorTextColor: text.error,
+
+      // Suffix Icon Colors
+      suffixIconColor: icon.primary,
+      suffixIconHoverColor: icon.primary,
+      suffixIconSelectedColor: icon.primary,
 
       // Text Styles
       textStyleNormal: theme.textStyle.bodyMedium.standard(
@@ -274,6 +542,10 @@ class AppDropdownWidgetConfig {
   /// Smaller than iconSize for better visual hierarchy.
   final double clearIconSize;
 
+  /// Size of the suffix icons in dropdown menu items.
+  /// Controls the display size of custom suffix icons.
+  final double suffixIconSize;
+
   /// Vertical spacing between the dropdown button and overlay menu.
   /// Controls how far the menu appears below the button.
   final double overlaySpacing;
@@ -293,6 +565,10 @@ class AppDropdownWidgetConfig {
   /// Spacing between the dropdown button and error text.
   /// Only applies when errorText is provided.
   final double errorSpacing;
+
+  /// Spacing between the item text and suffix icon in menu items.
+  /// Controls the gap between text content and suffix icons.
+  final double suffixIconSpacing;
 
   // ==========================================================================
   // BUTTON COLORS - NORMAL STATE
@@ -437,6 +713,15 @@ class AppDropdownWidgetConfig {
   /// Icon color for the checkmark on the currently selected menu item.
   final Color itemSelectedIconColor;
 
+  /// Color for suffix icons in menu items in their normal state.
+  final Color suffixIconColor;
+
+  /// Color for suffix icons when the menu item is being hovered.
+  final Color suffixIconHoverColor;
+
+  /// Color for suffix icons when the menu item is selected.
+  final Color suffixIconSelectedColor;
+
   // ==========================================================================
   // LABEL AND ERROR COLORS
   // ==========================================================================
@@ -536,26 +821,45 @@ class AppDropdownWidgetConfig {
 ///
 /// Provides a standard contract for any object that can be displayed
 /// in the dropdown menu, requiring both a display label and a unique value.
-abstract class DropdownItem {
+/// Optionally supports suffix icons with click functionality.
+abstract class DropdownItem<T> {
   /// The text to display in the dropdown menu and selected state.
   String get label;
 
   /// The unique identifier for this item, used for selection tracking.
-  String get value;
+  T get value;
+
+  /// Optional suffix icon displayed at the end of the menu item.
+  Widget? get suffixIcon;
+
+  /// Optional callback for when the suffix icon is tapped.
+  /// This is called independently of item selection.
+  VoidCallback? get onSuffixIconTap;
 }
 
 /// Simple implementation of DropdownItem for basic use cases.
 ///
 /// Suitable for most dropdown scenarios where you need a simple
-/// text label and string value pairing.
-class SimpleDropdownItem implements DropdownItem {
-  const SimpleDropdownItem(this.label, this.value);
+/// text label and string value pairing, with optional suffix icon support.
+class SimpleDropdownItem<T> implements DropdownItem<T> {
+  const SimpleDropdownItem(
+    this.label,
+    this.value, {
+    this.suffixIcon,
+    this.onSuffixIconTap,
+  });
 
   @override
   final String label;
 
   @override
-  final String value;
+  final T value;
+
+  @override
+  final Widget? suffixIcon;
+
+  @override
+  final VoidCallback? onSuffixIconTap;
 }
 
 // =============================================================================
@@ -573,7 +877,7 @@ class SimpleDropdownItem implements DropdownItem {
 ///
 /// The widget follows clean architecture principles by separating
 /// all visual styling into a dedicated config class.
-class AppDrownDownWidget<T extends DropdownItem> extends HookWidget {
+class AppDrownDownWidget<T> extends HookWidget {
   const AppDrownDownWidget({
     required this.items,
     required this.onChanged,
@@ -596,11 +900,11 @@ class AppDrownDownWidget<T extends DropdownItem> extends HookWidget {
 
   /// List of items to display in the dropdown menu.
   /// Each item must implement the DropdownItem interface.
-  final List<T> items;
+  final List<DropdownItem<T>> items;
 
   /// Callback function called when a new item is selected.
   /// Receives the selected item or null if cleared.
-  final ValueChanged<T?> onChanged;
+  final ValueChanged<DropdownItem<T>?> onChanged;
 
   /// Configuration object containing all visual styling and layout properties.
   /// Allows for complete customization of the dropdown appearance.
@@ -667,7 +971,7 @@ class AppDrownDownWidget<T extends DropdownItem> extends HookWidget {
     final buttonKey = useState(GlobalKey());
 
     // Find selected item
-    final selectedItem = items.where((item) => item.value == selectedValue).firstOrNull;
+    final selectedItem = items.where((item) => item.label == selectedValue).firstOrNull;
 
     void closeDropdown() {
       isOpen.value = false;
@@ -689,7 +993,7 @@ class AppDrownDownWidget<T extends DropdownItem> extends HookWidget {
           items: items,
           selectedValue: selectedValue,
           onItemSelected: (item) {
-            onChanged(item as T?);
+            onChanged(item as DropdownItem<T>?);
             closeDropdown();
           },
           onClose: closeDropdown,
@@ -789,7 +1093,7 @@ class _DropdownButton extends HookWidget {
     this.leadingIcon,
   });
 
-  final DropdownItem? selectedItem;
+  final DropdownItem<dynamic>? selectedItem;
   final String hint;
   final bool isOpen;
   final bool isFocused;
@@ -981,9 +1285,9 @@ class _DropdownOverlay extends HookWidget {
     required this.config,
   });
 
-  final List<DropdownItem> items;
-  final String? selectedValue;
-  final ValueChanged<DropdownItem> onItemSelected;
+  final List<DropdownItem<dynamic>> items;
+  final dynamic selectedValue;
+  final ValueChanged<DropdownItem<dynamic>> onItemSelected;
   final VoidCallback onClose;
   final Offset buttonOffset;
   final Size buttonSize;
@@ -1057,7 +1361,7 @@ class _DropdownMenuItem extends HookWidget {
     required this.config,
   });
 
-  final DropdownItem item;
+  final DropdownItem<dynamic> item;
   final bool isSelected;
   final VoidCallback onTap;
   final AppDropdownWidgetConfig config;
@@ -1071,6 +1375,7 @@ class _DropdownMenuItem extends HookWidget {
       onExit: (_) => isHovered.value = false,
       child: GestureDetector(
         onTap: onTap,
+        behavior: HitTestBehavior.opaque,
         child: AnimatedContainer(
           duration: config.animationDuration,
           curve: config.animationCurve,
@@ -1092,7 +1397,29 @@ class _DropdownMenuItem extends HookWidget {
                   ),
                 ),
               ),
-              if (isSelected)
+              if (item.suffixIcon != null) ...[
+                SizedBox(width: config.suffixIconSpacing),
+                GestureDetector(
+                  onTap: () {
+                    // Handle suffix icon tap without triggering item selection
+                    item.onSuffixIconTap?.call();
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: AnimatedContainer(
+                    duration: config.animationDuration,
+                    curve: config.animationCurve,
+                    child: IconTheme(
+                      data: IconThemeData(
+                        color: _getSuffixIconColor(isHovered.value, isSelected),
+                        size: config.suffixIconSize,
+                      ),
+                      child: item.suffixIcon!,
+                    ),
+                  ),
+                ),
+              ],
+              if (isSelected) ...[
+                SizedBox(width: config.suffixIconSpacing),
                 AnimatedContainer(
                   duration: config.animationDuration,
                   curve: config.animationCurve,
@@ -1102,6 +1429,7 @@ class _DropdownMenuItem extends HookWidget {
                     color: _getIconColor(isHovered.value, isSelected),
                   ),
                 ),
+              ],
             ],
           ),
         ),
@@ -1137,5 +1465,15 @@ class _DropdownMenuItem extends HookWidget {
       return config.itemTextStyleHover;
     }
     return config.itemTextStyleNormal;
+  }
+
+  Color _getSuffixIconColor(bool hovering, bool selected) {
+    if (selected) {
+      return config.suffixIconSelectedColor;
+    }
+    if (hovering) {
+      return config.suffixIconHoverColor;
+    }
+    return config.suffixIconColor;
   }
 }

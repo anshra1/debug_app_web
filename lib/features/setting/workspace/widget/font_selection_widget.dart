@@ -35,27 +35,26 @@ class FontSelectionWidget extends HookWidget {
             // 90% - Font Dropdown
             Expanded(
               flex: 9,
-              child: AppDrownDownWidget<SimpleDropdownItem>(
+              child: AppDrownDownWidget<String>(
                 height: 75,
                 items: fontItems,
-                selectedValue: context.read<AppearanceCubit>().state.fontFamily ?? '',
+                selectedValue:
+                    context.read<AppearanceCubit>().state.fontFamily ?? 'System',
                 onChanged: (item) =>
-                    context.read<AppearanceCubit>().setFontFamily(item?.value ?? ''),
+                    context.read<AppearanceCubit>().setFontFamily(item?.label ?? ''),
                 hint: 'Select font family...',
-                showClearButton: true,
                 leadingIcon: Icon(
                   Icons.font_download,
                   size: 20,
                   color: theme.iconColorScheme.secondary,
-                ), config: AppDropdownWidgetConfig.defaultConfig(context),
+                ),
+                config: AppDropdownWidgetConfig.defaultConfig(context),
               ),
             ),
             SizedBox(width: theme.spacing.m),
             // 10% - Reset Button
-            Expanded(
-              child: _ResetFontButton(
-                onReset: context.read<AppearanceCubit>().resetFontFamily,
-              ),
+            _ResetFontButton(
+              onReset: context.read<AppearanceCubit>().resetFontFamily,
             ),
           ],
         ),
@@ -79,7 +78,8 @@ class _ResetFontButton extends StatelessWidget {
     return GestureDetector(
       onTap: onReset,
       child: Container(
-        height: 75, // Match dropdown height
+        height: 75,
+        width: 120,
         padding: EdgeInsets.symmetric(
           horizontal: theme.spacing.s,
           vertical: theme.spacing.s,

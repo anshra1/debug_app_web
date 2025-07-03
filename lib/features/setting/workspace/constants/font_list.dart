@@ -1,40 +1,40 @@
 import 'package:debug_app_web/core/widgets/atoms/inputs/app_drop_down_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-List<SimpleDropdownItem> fontItemsList = [
+List<SimpleDropdownItem<String>> fontItemsList = [
   // System font
-  const SimpleDropdownItem('System', ''),
+  const SimpleDropdownItem<String>('System', ''),
 
   // Top 8 Developer Fonts
-  SimpleDropdownItem(
+  SimpleDropdownItem<String>(
     'Inter',
     GoogleFonts.inter().fontFamily ?? '',
   ),
-  SimpleDropdownItem(
+  SimpleDropdownItem<String>(
     'Roboto',
     GoogleFonts.roboto().fontFamily ?? '',
   ),
-  SimpleDropdownItem(
+  SimpleDropdownItem<String>(
     'Open Sans',
     GoogleFonts.openSans().fontFamily ?? '',
   ),
-  SimpleDropdownItem(
+  SimpleDropdownItem<String>(
     'Lato',
     GoogleFonts.lato().fontFamily ?? '',
   ),
-  SimpleDropdownItem(
+  SimpleDropdownItem<String>(
     'JetBrains Mono',
     GoogleFonts.jetBrainsMono().fontFamily ?? '',
   ),
-  SimpleDropdownItem(
+  SimpleDropdownItem<String>(
     'Fira Code',
     GoogleFonts.firaCode().fontFamily ?? '',
   ),
-  SimpleDropdownItem(
+  SimpleDropdownItem<String>(
     'Source Code Pro',
     GoogleFonts.sourceCodePro().fontFamily ?? '',
   ),
-  SimpleDropdownItem(
+  SimpleDropdownItem<String>(
     'Poppins',
     GoogleFonts.poppins().fontFamily ?? '',
   ),

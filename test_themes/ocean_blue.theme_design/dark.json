@@ -1,0 +1,147 @@
+{
+ "themeName": "Ocean Blue Dark",
+ "textColorScheme": {
+  "primary": "#F7FAFC",
+  "secondary": "#CBD5E0",
+  "tertiary": "#A0AEC0",
+  "quaternary": "#4A5568",
+  "onFill": "#1A202C",
+  "action": "#63B3ED",
+  "actionHover": "#4299E1",
+  "info": "#63B3ED",
+  "infoHover": "#4299E1",
+  "success": "#68D391",
+  "successHover": "#48BB78",
+  "warning": "#F6E05E",
+  "warningHover": "#ECC94B",
+  "error": "#FC8181",
+  "errorHover": "#F56565",
+  "featured": "#B794F6",
+  "featuredHover": "#9F7AEA"
+ },
+ "iconColorScheme": {
+  "primary": "#F7FAFC",
+  "secondary": "#CBD5E0",
+  "tertiary": "#A0AEC0",
+  "quaternary": "#4A5568",
+  "onFill": "#1A202C",
+  "featuredThick": "#B794F6",
+  "featuredThickHover": "#9F7AEA",
+  "infoThick": "#63B3ED",
+  "infoThickHover": "#4299E1",
+  "successThick": "#68D391",
+  "successThickHover": "#48BB78",
+  "warningThick": "#F6E05E",
+  "warningThickHover": "#ECC94B",
+  "errorThick": "#FC8181",
+  "errorThickHover": "#F56565"
+ },
+ "borderColorScheme": {
+  "primary": "#4A5568",
+  "primaryHover": "#2D3748",
+  "secondary": "#718096",
+  "secondaryHover": "#A0AEC0",
+  "tertiary": "#CBD5E0",
+  "tertiaryHover": "#E2E8F0",
+  "themeThick": "#63B3ED",
+  "themeThickHover": "#4299E1",
+  "infoThick": "#63B3ED",
+  "infoThickHover": "#4299E1",
+  "successThick": "#68D391",
+  "successThickHover": "#48BB78",
+  "warningThick": "#F6E05E",
+  "warningThickHover": "#ECC94B",
+  "errorThick": "#FC8181",
+  "errorThickHover": "#F56565",
+  "featuredThick": "#B794F6",
+  "featuredThickHover": "#9F7AEA"
+ },
+ "fillColorScheme": {
+  "primary": "#1A202C",
+  "primaryHover": "#2D3748",
+  "secondary": "#4A5568",
+  "secondaryHover": "#718096",
+  "tertiary": "#A0AEC0",
+  "tertiaryHover": "#CBD5E0",
+  "quaternary": "#E2E8F0",
+  "quaternaryHover": "#F7FAFC",
+  "content": "#00000000",
+  "contentHover": "#05000000",
+  "contentVisible": "#2D3748",
+  "contentVisibleHover": "#10000000",
+  "themeThick": "#63B3ED",
+  "themeThickHover": "#4299E1",
+  "themeSelect": "#1A63B3ED",
+  "textSelect": "#2063B3ED",
+  "infoLight": "#2A4365",
+  "infoLightHover": "#3182CE",
+  "infoThick": "#63B3ED",
+  "infoThickHover": "#4299E1",
+  "successLight": "#22543D",
+  "successLightHover": "#2F855A",
+  "warningLight": "#744210",
+  "warningLightHover": "#975A16",
+  "errorLight": "#742A2A",
+  "errorLightHover": "#9B2C2C",
+  "errorThick": "#FC8181",
+  "errorThickHover": "#F56565",
+  "errorSelect": "#10FC8181",
+  "featuredLight": "#44337A",
+  "featuredLightHover": "#553C9A",
+  "featuredThick": "#B794F6",
+  "featuredThickHover": "#9F7AEA"
+ },
+ "backgroundColorScheme": {
+  "primary": "#1A202C",
+  "secondary": "#2D3748",
+  "tertiary": "#4A5568"
+ },
+ "surfaceColorScheme": {
+  "primary": "#1A202C",
+  "secondary": "#2D3748",
+  "tertiary": "#4A5568"
+ },
+ "surfaceContainerColorScheme": {
+  "primary": "#1A202C",
+  "secondary": "#2D3748",
+  "tertiary": "#4A5568"
+ },
+ "brandColorScheme": {
+  "primary": "#63B3ED",
+  "secondary": "#4299E1",
+  "tertiary": "#3182CE"
+ },
+ "badgeColorScheme": {
+  "badgeColors": [
+   {
+    "name": "info",
+    "fillColor": "#2A4365",
+    "textColor": "#E2E8F0",
+    "borderColor": "#63B3ED"
+   },
+   {
+    "name": "success",
+    "fillColor": "#22543D",
+    "textColor": "#E2E8F0",
+    "borderColor": "#68D391"
+   },
+   {
+    "name": "warning",
+    "fillColor": "#744210",
+    "textColor": "#E2E8F0",
+    "borderColor": "#F6E05E"
+   },
+   {
+    "name": "error",
+    "fillColor": "#742A2A",
+    "textColor": "#E2E8F0",
+    "borderColor": "#FC8181"
+   }
+  ]
+ },
+ "otherColorsColorScheme": {
+  "divider": "#4A5568",
+  "shadow": "#000000",
+  "overlay": "#2D3748"
+ }
+}

@@ -15,6 +15,9 @@ class AppRouter {
   static final GlobalKey<NavigatorState> mainMenuNavigatorKey =
       GlobalKey<NavigatorState>(debugLabel: 'main_menu');
 
+  // Expose the root navigator key for global services
+  static GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
+
   static final GoRouter router = GoRouter(
     errorPageBuilder: (context, state) =>
         MaterialPage(key: state.pageKey, child: const PageNotFoundScreen()),
@@ -51,6 +54,7 @@ class AppRouter {
           return _buildTransition(child: const SettingHomepage(), state: state);
         },
       ),
+     
     ],
   );
 

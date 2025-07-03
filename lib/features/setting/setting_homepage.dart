@@ -1,8 +1,8 @@
 import 'package:debug_app_web/features/setting/notification/notification_setting_page.dart';
-import 'package:debug_app_web/features/setting/setting_sidebar/pages/setting_sidebar_page.dart';
-import 'package:debug_app_web/features/setting/shortcuts/page/shortcut_page.dart';
 import 'package:debug_app_web/features/setting/setting_sidebar/cubit/setting_cubit.dart';
 import 'package:debug_app_web/features/setting/setting_sidebar/cubit/setting_state.dart';
+import 'package:debug_app_web/features/setting/setting_sidebar/pages/setting_sidebar_page.dart';
+import 'package:debug_app_web/features/setting/shortcuts/page/shortcut_page.dart';
 import 'package:debug_app_web/features/setting/workspace/page/workspace_setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

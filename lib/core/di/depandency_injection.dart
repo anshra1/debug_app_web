@@ -2,13 +2,20 @@ import 'package:debug_app_web/features/home/data/datasource/remote_data_source/s
 import 'package:debug_app_web/features/home/data/repo/%20server_repo_impl.dart';
 import 'package:debug_app_web/features/home/domain/repo/server_repo.dart';
 import 'package:debug_app_web/features/home/domain/usecases/server_usecase.dart';
-  import 'package:debug_app_web/features/home/presentation/cubit/server_cubit.dart';
+import 'package:debug_app_web/features/home/presentation/cubit/server_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:toastification/toastification.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  await _initCore();
   await _initServer();
+}
+
+Future<void> _initCore() async {
+  // Toastification
+  sl.registerLazySingleton(Toastification.new);
 }
 
 Future<void> _initServer() async {
