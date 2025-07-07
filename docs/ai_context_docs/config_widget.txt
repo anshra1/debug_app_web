@@ -23,6 +23,7 @@ I have an existing reusable Flutter widget. I want you to **extract all visual c
 - Add doc comments (`///`) to config fields for clarity
 
 ---
+and in the end review this widget from industry ex
 
 ### ✅ Example Input Widget to Transform:
 import 'package:flutter/material.dart';
@@ -377,3 +378,72 @@ class SidebarItemWidget extends HookWidget {
     return config.textStyleNormal;
   }
 }
+
+// =============================================================================
+// REVIEW WORKFLOW
+// =============================================================================
+
+// After generating the refactored widget and its config class, ask for my confirmation.
+// Once I reply with "yes" or another form of approval, you will then proceed
+// to conduct a full review of the new widget based on the criteria below.
+
+// Documentation Review
+// 1. All instance variables (especially final, late, or configurable ones) must be documented using Dart-style 
+/// doc comments that explain what the variable is, why it exists, and when/how it is used. 
+This applies to all Flutter Widget classes, configuration classes (e.g., Theme, Spacing, Styles), 
+state/data classes, and service-layer objects.
+
+
+// API Design Review
+2. Are the parameters named clearly and consistent with Flutter naming conventions?
+3. Are default values sensible (e.g., spacing, colors, sizes)?
+4. Are required vs optional parameters thoughtfully separated?
+5. Do parameters support flexibility (e.g., Widget? prefix, EdgeInsets? padding)?
+6. Are there overloads or factory constructors for common variations?
+
+// Architecture Review
+7. Is logic (state/mutations) separated from the UI?
+8. Is the widget truly dumb/presentational?
+9. Does it use the correct design tokens (colors, typography, padding)?
+10. Does it align with global spacing, radius, border, and elevation rules?
+11. Is this using hardcoded values?
+12. Is the widget stateful/stateless for the right reason?
+13. Does it unnecessarily depend on external state (like context.watch)?
+14. Is it tightly coupled to any specific BLoC, provider, or cubit?
+
+// Performance Review
+15. Does it avoid unnecessary rebuilds (const, keys, memoization)?
+16. Are heavy computations done outside build (useMemoized, initState)?
+17. Does it use const constructors where possible?
+
+// Code Quality Review
+18. Are variable and class names clear and intentional?
+19. Are helper methods extracted for readability?
+20. Is indentation and formatting clean and consistent?
+21. Are comments used where reasoning isn't obvious?
+22. Are private variables/methods properly scoped?
+
+// Error Handling Review
+23. Does the widget handle all nullable scenarios gracefully?
+24. Are defaults set to avoid runtime exceptions?
+
+// Testing & Maintainability Review
+25. Can the widget be tested in isolation?
+26. Is logic separated to allow for unit or widget testing?
+27. Can it be generalized or composed from smaller widgets?
+28. Are internal helper widgets abstracted or hidden?
+29. if i using somthing that need to be dispose do i do it 
+
+Accessibility (a11y) Review
+Is it screen-reader friendly? Widgets must be wrapped in a Semantics widget with an appropriate label and state (e.g., isChecked, isSelected) for screen readers.
+Are tap targets large enough? Interactive areas must meet minimum size requirements (typically 48x48 logical pixels) to be easily usable for those with motor impairments.
+Is there sufficient color contrast? Text and icon colors must have a high enough contrast ratio against their background to be legible for users with low vision.
+Is it keyboard navigable? The widget must be focusable and interactive using only keyboard controls for desktop and web users.
+
+Internationalization & Localization (i18n/l10n) Review
+Are there any hardcoded strings? All user-facing text (labels, hints, etc.) must come from a localization provider, not be hardcoded in the widget.
+Is the layout flexible for different languages? The UI must not break or overflow when text length changes significantly, as is common with translations.
+
+Platform Adaptability Review
+Is the layout responsive? The widget must adapt gracefully to different screen sizes and orientations (e.g., mobile, tablet, desktop).
+Does it respect platform conventions? The widget should consider adapting its appearance or behavior to feel "native" on different platforms (iOS, Android, etc.) where appropriate.

@@ -1,0 +1,14 @@
+docs/bug-tracking/
+├── _index.json                 # Master search index
+├── flutter/
+│   ├── widgets.md             # Widget-related bugs
+│   ├── state-management.md    # State/lifecycle bugs
+│   └── rendering.md           # UI rendering issues
+├── api/
+│   ├── network-errors.md      # HTTP/API issues
+│   └── data-parsing.md        # JSON/serialization
+├── build/
+│   ├── dependencies.md        # Package conflicts
+│   └── platform-specific.md   # iOS/Android issues
+└── _templates/
+    └── bug-template.md         # Standard bug format

@@ -49,7 +49,7 @@ class AppSvgIconConfig {
     final theme = AppTheme.of(context);
     final icon = theme.iconColorScheme;
     final fill = theme.fillColorScheme;
-    final surface = theme.surfaceColorScheme;
+    
     final spacing = theme.spacing;
     final radius = theme.borderRadius;
 

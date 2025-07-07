@@ -2,6 +2,7 @@ import 'package:debug_app_web/core/di/depandency_injection.dart';
 import 'package:debug_app_web/root_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:toastification/toastification.dart';
 
 Future<void> main() async {
   try {
@@ -10,9 +11,12 @@ Future<void> main() async {
     FlutterError.onError = (FlutterErrorDetails details) {
       // In a real app, log this to a crash reporting service (e.g., Sentry)
       debugPrint('Flutter error: ${details.exceptionAsString()}');
-    }; // Initialize dependencies first
+    };
 
-    // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    
+
+    // Initialize dependencies
+    await init();
 
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
@@ -21,9 +25,7 @@ Future<void> main() async {
       ),
     );
 
-    await init();
-
-    runApp(const RootApp());
+    runApp(const ToastificationWrapper(child: RootApp()));
   } catch (error, stackTrace) {
     FlutterError.reportError(
       FlutterErrorDetails(

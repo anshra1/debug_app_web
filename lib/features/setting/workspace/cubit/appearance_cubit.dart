@@ -15,6 +15,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_ui_widgets/theme/definition/text_style/app_text_style.dart';
 import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
 
+enum UserTimeFormat {
+  twelveHour('12h'),
+  twentyFourHour('24h');
+
+  final String value;
+  const UserTimeFormat(this.value);
+}
+
 class AppearanceCubit extends Cubit<AppearanceState> {
   AppearanceCubit() : super(AppearanceState.initial()) {
     _setupPlatformBrightnessListener();
@@ -174,7 +182,13 @@ class AppearanceCubit extends Cubit<AppearanceState> {
       );
 
       if (directoryPath == null) {
-        emit(state.copyWith(isLoading: false));
+        // User cancelled the selection
+        emit(
+          state.copyWith(
+            isLoading: false,
+            errorMessage: 'User cancelled the selection',
+          ),
+        );
         return;
       }
 
@@ -210,7 +224,7 @@ class AppearanceCubit extends Cubit<AppearanceState> {
 
       await _loadThemeFromFile(directoryPath);
 
-      emit(state.copyWith(isLoading: false));
+      emit(state.copyWith(isLoading: false, errorMessage: null));
     } on Exception catch (e) {
       emit(
         state.copyWith(
@@ -346,9 +360,21 @@ class AppearanceCubit extends Cubit<AppearanceState> {
   void setTextScaleFactor(double textScaleFactor) {}
 
   // Date/Time Format Methods
-  void setDateFormat(String dateFormat) {}
-  void setTimeFormat(String timeFormat) {}
-  void setTimezoneId(String timezoneId) {}
+  void setDateFormat(String dateFormat) {
+    emit(state.copyWith(dateFormat: dateFormat));
+    _saveSettingsDebounced();
+  }
+
+  void toggleTimeFormat() {
+    final newFormat = state.timeFormat == '24h' ? '12h' : '24h';
+    emit(state.copyWith(timeFormat: newFormat));
+    _saveSettingsDebounced();
+  }
+
+  void setTimezoneId(String timezoneId) {
+    emit(state.copyWith(timezoneId: timezoneId));
+    _saveSettingsDebounced();
+  }
 
   // Menu State Methods
   void setMenuCollapsed(bool collapsed) {}

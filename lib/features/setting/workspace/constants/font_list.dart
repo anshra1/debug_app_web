@@ -1,4 +1,4 @@
-import 'package:debug_app_web/core/widgets/atoms/inputs/app_drop_down_widget.dart';
+import 'package:debug_app_web/core/widgets/atoms/inputs/app_dropdown_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 List<SimpleDropdownItem<String>> fontItemsList = [

@@ -1,0 +1,89 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Step 1 - Ask for clarification if any input, state, data, or goal is missing. Ask Me if anything is missing to complete my task at industry and production grade level and give me suggestion if there is any bettter way to do it
+
+Step 2 - Give me short explianation 
+What it plans to build
+How it will be structured
+Which layers (UI, domain, data) will be touched
+What assumptions need confirmation (e.g., data source, architecture)
+Step 3 -  Structural Planning (No Real Code Yet)
+Folder Structure
+Propose full folder/file layout
+Wait for structural confirmation before creating anything
+🔹 UI / Widget Tree
+Show the complete widget hierarchy
+Ask:
+“What’s the data source for this widget?”
+“Should this be reactive or static?”
+“Do you want scroll behavior, shimmer, pagination?”
+
+ Methods & classes or any type of code
+ 
+Step 1 - Ask for clarification if any input, state, data, or goal is missing. Ask Me if anything is missing to complete my task at industry and production grade level and give me suggestion if there is any bettter way to do it
+
+Step 2 - Give me short explianation 
+What it plans to build
+How it will be structured
+Which layers (UI, domain, data) will be touched
+What assumptions need confirmation (e.g., data source, architecture)
+Step 3 -  Structural Planning (No Real Code Yet)
+Folder Structure
+Propose full folder/file layout
+Wait for structural confirmation before creating anything
+🔹 UI / Widget Tree
+Show the complete widget hierarchy
+Ask:
+“What’s the data source for this widget?”
+“Should this be reactive or static?”
+“Do you want scroll behavior, shimmer, pagination?”
+ Methods & classes or any type of code
+
+
+/// Handles user-related operations like fetching and caching users
+class UserService {
+  final UserRepository repository;
+  final UserCache cache;
+
+  UserService({
+    required this.repository,
+    required this.cache,
+  });
+
+  /// Fetches all users from the repository and returns a mapped domain model list
+  Future<List<User>> fetchUsers() async {
+    // 1. Check if cached users exist and are fresh
+    // 2. If fresh, return from cache
+    // 3. Else fetch users from repository
+    // 4. Map DTOs to domain models
+    // 5. Save to cache
+    // 6. Return domain list
+
+    // TODO: Clarify if pagination is needed — current flow assumes full fetch
+    // NOTE: This method assumes repository handles errors — confirm this
+    // POSSIBLE BUG: What if repository returns null or malformed data? Add a null-check or safe fallback
+  }
+
+  /// Gets a user by ID from cache or repository
+  Future<User?> getUserById(String id) async {
+    // 1. Check if user exists in cache
+    // 2. If not, fetch from repository
+    // 3. Handle error/404 case
+    // 4. Return mapped domain user
+
+    // TODO: Confirm if ID uniqueness is enforced at repo level
+    // NOTE: Consider caching this result if frequently accessed
+  }
+
+  /// Clears all user-related cached data
+  void clearUserCache() {
+    // 1. Clear cache
+    // 2. Optionally notify dependent services
+
+    // POSSIBLE RISK: If cache clearing happens while fetch is in progress, race condition may occur
+  }
+}
+step 4- Once i confirm everything then you will create the code

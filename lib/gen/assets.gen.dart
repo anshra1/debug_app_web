@@ -17,8 +17,19 @@ class $AssetsIconsGen {
   List<String> get values => [folder];
 }
 
+class $AssetsLottieGen {
+  const $AssetsLottieGen();
+
+  /// File path: assets/lottie/file_uploading.json
+  String get fileUploading => 'assets/lottie/file_uploading.json';
+
+  /// List of all assets
+  List<String> get values => [fileUploading];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsLottieGen lottie = $AssetsLottieGen();
 }

@@ -877,15 +877,15 @@ class SimpleDropdownItem<T> implements DropdownItem<T> {
 ///
 /// The widget follows clean architecture principles by separating
 /// all visual styling into a dedicated config class.
-class AppDrownDownWidget<T> extends HookWidget {
-  const AppDrownDownWidget({
+class AppDropDownWidget<T> extends HookWidget {
+  const AppDropDownWidget({
     required this.items,
     required this.onChanged,
     required this.config,
+    required this.hint,
     super.key,
     this.selectedValue,
     this.label,
-    this.hint = 'Select option...',
     this.width,
     this.height = 48,
     this.enabled = true,
@@ -911,7 +911,7 @@ class AppDrownDownWidget<T> extends HookWidget {
   final AppDropdownWidgetConfig config;
 
   /// The currently selected value that determines which item appears selected.
-  /// Should match the 'value' property of one of the items in the list.
+  /// Should match the 'label' property of one of the items in the list.
   final String? selectedValue;
 
   /// Optional text label displayed above the dropdown.
@@ -1296,6 +1296,11 @@ class _DropdownOverlay extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final spaceBelow = screenHeight - (buttonOffset.dy + buttonSize.height);
+    final spaceAbove = buttonOffset.dy;
+    final opensUpward = spaceBelow < maxHeight && spaceAbove > spaceBelow;
+
     return GestureDetector(
       onTap: onClose,
       child: ColoredBox(
@@ -1304,7 +1309,12 @@ class _DropdownOverlay extends HookWidget {
           children: [
             Positioned(
               left: buttonOffset.dx,
-              top: buttonOffset.dy + buttonSize.height + config.overlaySpacing,
+              top: opensUpward
+                  ? null
+                  : buttonOffset.dy + buttonSize.height + config.overlaySpacing,
+              bottom: opensUpward
+                  ? screenHeight - buttonOffset.dy + config.overlaySpacing
+                  : null,
               width: buttonSize.width,
               child: Material(
                 elevation: config.overlayElevation,

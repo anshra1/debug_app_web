@@ -1,5 +1,5 @@
 import 'package:debug_app_web/core/widgets/atoms/display/app_header_widget.dart';
-import 'package:debug_app_web/core/widgets/atoms/inputs/app_drop_down_widget.dart';
+import 'package:debug_app_web/core/widgets/atoms/inputs/app_dropdown_widget.dart';
 import 'package:debug_app_web/features/setting/workspace/constants/font_list.dart';
 import 'package:debug_app_web/features/setting/workspace/cubit/appearance_cubit.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class FontSelectionWidget extends HookWidget {
             // 90% - Font Dropdown
             Expanded(
               flex: 9,
-              child: AppDrownDownWidget<String>(
+              child: AppDropDownWidget<String>(
                 height: 75,
                 items: fontItems,
                 selectedValue:
