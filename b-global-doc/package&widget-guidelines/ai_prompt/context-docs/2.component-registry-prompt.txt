@@ -1,0 +1,175 @@
+CONTEXT DOCUMENTATION UPDATE PROMPT
+=====================================
+
+TASK:
+When provided with a Dart file containing standardized documentation comments (@component, @category, etc.), 
+update the project's context documentation in b-global-doc/context-docs/context-docs.md.
+
+PROCESS STEPS:
+-------------
+1. READ CURRENT DOCUMENTATION
+   - Check if component exists in context-docs.md
+   - Note current structure and formatting
+   - Verify last updated date
+
+2. PARSE DART FILE DOCUMENTATION
+   Extract from @tags:
+   - Component name (@component)
+   - Category (@category)
+   - Description (@description)
+   - Dependencies (@relatedComponents)
+   - Test file path (@testing)
+   - Platform support (if specified)
+
+3. UPDATE DOCUMENTATION FORMAT
+   
+   IF COMPONENT EXISTS:
+   -------------------
+   ### ComponentName
+   - **Path:** `path/to/component`
+   - **Description:** Updated description
+   - **Dependencies/Type/Category:** Updated value
+   - **Platforms:** platform list
+   - **Test:** `test/path`
+
+   IF COMPONENT IS NEW:
+   -------------------
+   - Add under appropriate section
+   - Follow existing format
+   - Maintain alphabetical order
+
+4. UPDATE METADATA
+   - Update "Last Updated" date
+   - Verify section headers
+   - Ensure Markdown formatting
+
+COMPONENT REQUIREMENTS:
+---------------------
+
+SERVICES:
+- Path: lib/core/services/[name].dart
+- Description: Brief purpose
+- Dependencies: List of dependencies
+- Platforms: Supported platforms
+- Test: Test file path
+
+MANAGERS:
+- Path: lib/core/manager/[name].dart
+- Description: Brief purpose
+- Type: Singleton/Static
+- Platforms: Supported platforms
+- Test: Test file path
+
+WIDGETS:
+- Path: lib/core/widgets/[category]/[name].dart
+- Description: Brief purpose
+- Category: atoms/molecules/organisms
+- Platforms: Supported platforms
+- Test: Test file path
+
+UTILS/HELPERS:
+- Path: lib/core/utils/[type]/[name].dart
+- Description: Brief purpose
+- Type/Format: Static/Mixin/etc.
+- Platforms: Supported platforms
+- Test: Test file path
+
+EXTENSIONS:
+- Path: lib/core/utils/extensions/[name].dart
+- Description: Brief purpose
+- Extends: Extended type
+- Platforms: Supported platforms
+- Test: Test file path
+
+FORMATTING RULES:
+---------------
+1. Use proper Markdown syntax
+2. Code paths in backticks
+3. Bold (**) for field names
+4. Consistent indentation
+5. Maintain section hierarchy
+6. Keep alphabetical order within sections
+
+EXAMPLE:
+-------
+Input Dart File:
+---------------
+/// @component NewService
+/// @category Service
+/// @description Handles user authentication
+/// @relatedComponents
+/// - DatabaseService
+/// - CacheManager
+/// @testing
+/// test/core/services/new_service_test.dart
+
+Output in context-docs.md:
+------------------------
+### NewService
+- **Path:** `lib/core/services/new_service.dart`
+- **Description:** Handles user authentication
+- **Dependencies:** DatabaseService, CacheManager
+- **Platforms:** all
+- **Test:** `test/core/services/new_service_test.dart`
+
+IMPORTANT NOTES:
+--------------
+1. MAINTAIN CONSISTENCY
+   - Keep existing sections
+   - Follow established format
+   - Preserve project patterns
+   - Update last modified date
+
+2. DOCUMENTATION STYLE
+   - Keep descriptions concise
+   - Use proper Markdown
+   - Follow alphabetical order
+   - Use consistent formatting
+
+3. SECTION ORDER
+   - Project Patterns
+   - Directory Structure
+   - Quick Reference
+   - Services
+   - Managers
+   - Widgets
+   - Extensions
+   - Utils
+   - Helpers
+   - Important Notes
+
+4. PLATFORM SUPPORT
+   - Use "all" for cross-platform
+   - List specific platforms if limited
+   - Format: web, android, ios, etc.
+
+5. TEST PATHS
+   - Mirror source file structure
+   - Add "_test.dart" suffix
+   - Include full path from test/
+   - if test not found in dart write - test unavailble
+
+6. DEPENDENCIES
+   - List external packages
+   - Include internal dependencies
+   - Note required services/managers
+
+ERROR HANDLING:
+-------------
+- If test file missing: Mark as "Test: Not implemented"
+- If platforms unclear: Default to "all"
+- If dependencies unknown: List as "No external dependencies"
+- If type/category unclear: Ask for clarification 
+
+
+Process:
+First, analyze the provided code
+Ask ALL necessary clarifying questions
+Wait for responses
+Generate documentation only after having complete understanding
+If any documentation aspect is uncertain, ask for clarification rather than making assumptions
+When I share a Dart file, please:
+
+Ask any necessary clarifying questions
+Only proceed with documentation generation after receiving clear answers
+Follow the documentation format exactly as specified

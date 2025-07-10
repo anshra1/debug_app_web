@@ -1,0 +1,781 @@
+Design System Documentation (Part 1): Anatomy of AppThemeData
+This document provides a comprehensive reference for the AppThemeData class, the core of our application's design system. AppThemeData encapsulates all design tokens—such as colors, text styles, spacing, and shadows—into a single, type-safe, and serializable object.
+
+The system is designed to be platform-agnostic, ensuring that the design language remains consistent while allowing for platform-specific implementations (like Flutter's ThemeData).
+
+1. Main Class: AppThemeData
+The AppThemeData class is the top-level container that holds all other token categories. It acts as the single source of truth for the entire UI theme.
+
+
+class AppThemeData {
+  String themeName;                      // A unique identifier for the theme (e.g., "light", "dark").
+  AppTextColorScheme textColorScheme;    // Defines all semantic text colors.
+  AppTextStyle textStyle;                // Defines the entire typography system.
+  AppIconColorScheme iconColorScheme;    // Defines all semantic icon colors.
+  AppBorderColorScheme borderColorScheme;  // Defines colors used for borders and outlines.
+  AppBadgeColorScheme badgeColorScheme;   // A dedicated color system for badges.
+  AppBackgroundColorScheme backgroundColorScheme; // Defines base background colors.
+  AppFillColorScheme fillColorScheme;    // Defines colors for component fills and backgrounds.
+  AppSurfaceColorScheme surfaceColorScheme;  // Defines colors for layered surfaces (cards, dialogs).
+  AppBorderRadius borderRadius;           // Defines the border radius token scale.
+  AppSpacing spacing;                     // Defines the spacing and padding token scale.
+  AppShadow shadow;                       // Defines the shadow elevation system.
+  AppBrandColorScheme brandColorScheme;   // Defines primary brand and accent colors.
+  AppSurfaceContainerColorScheme surfaceContainerColorScheme; // Defines specific container surface colors.
+  AppOtherColorsColorScheme otherColorsColorScheme; // Holds miscellaneous or utility colors.
+}
+
+2. Color Scheme Subclasses
+Colors are organized by their semantic purpose to ensure they are applied correctly across the UI.
+
+AppTextColorScheme - Text Colors
+Defines colors based on their role and context.
+
+Color primary - For primary text, such as headlines and body content.
+
+Color secondary - For secondary text with less emphasis, like captions or subtitles.
+
+Color tertiary - For tertiary text with the least emphasis, such as hints.
+
+Color quaternary - For disabled or placeholder text.
+
+Color onFill - For text that appears on a "thick" or solid-color fill (e.g., on a primary button).
+
+Color action / actionHover - For interactive text elements like links.
+
+Color info / infoHover - For informational text.
+
+Color success / successHover - For success or confirmation text.
+
+Color warning / warningHover - For warning text.
+
+Color error / errorHover - For error or validation message text.
+
+Color featured / featuredHover - For special or featured text.
+
+AppIconColorScheme - Icon Colors
+Color primary, secondary, tertiary, quaternary - For standard icons, tiered by emphasis.
+
+Color onFill - For icons on solid-color backgrounds.
+
+Color featuredThick / featuredThickHover - For icons on featured backgrounds.
+
+Color infoThick / infoThickHover, successThick / successThickHover, warningThick / warningThickHover, errorThick / errorThickHover - For icons within status components.
+
+AppBorderColorScheme - Border Colors
+Color primary / primaryHover - For standard component borders (e.g., OutlinedButton, TextField).
+
+Color secondary / secondaryHover - For less prominent borders.
+
+Color tertiary / tertiaryHover - For decorative or subtle borders.
+
+Color themeThick / themeThickHover - For borders that use the main theme accent color.
+
+Color infoThick / infoThickHover, successThick / successThickHover, warningThick / warningThickHover, errorThick / errorThickHover, featuredThick / featuredThickHover - For borders on status components.
+
+AppFillColorScheme - Fill/Background Colors
+The most comprehensive color set, used for the background of interactive components.
+
+Color primary / primaryHover - For primary content areas or default backgrounds.
+
+Color secondary / secondaryHover - For secondary content areas.
+
+Color tertiary / tertiaryHover - For tertiary content areas.
+
+Color quaternary / quaternaryHover - For subtle backgrounds.
+
+Color content / contentHover - For general content containers.
+
+Color contentVisible / contentVisibleHover - For more prominent content backgrounds.
+
+Color themeThick / themeThickHover - The main brand fill color, used for primary buttons and FABs.
+
+Color themeSelect - A selection color derived from the main theme color.
+
+Color textSelect - The color for selected text.
+
+Color infoLight / infoLightHover, infoThick / infoThickHover - For informational components (e.g., alerts).
+
+Color successLight / successLightHover, warningLight / warningLightHover, errorLight / errorLightHover, errorThick / errorThickHover, errorSelect - For status-based components.
+
+Color featuredLight / featuredLightHover, featuredThick / featuredThickHover - For featured or promotional components.
+
+AppSurfaceColorScheme - Surface Colors
+Used for layered UI elements like cards, dialogs, and navigation bars to create a sense of elevation.
+
+Color primary / primaryHover - The base surface color.
+
+Color layer01 / layer01Hover through layer04 / layer04Hover - Progressively darker or lighter colors to simulate depth.
+
+Color inverse - A high-contrast surface color, typically the reverse of primary (e.g., dark for a light theme).
+
+Color secondary - A secondary surface variant.
+
+Color overlay - For modal scrims or overlays.
+
+AppSurfaceContainerColorScheme - Container Surface Colors
+A simplified set of the main surface layers for easier application.
+
+Color layer01, layer02, layer03
+
+AppBackgroundColorScheme - Background Color
+Color primary - The main, top-level background color of the app scaffold.
+
+AppBadgeColorScheme - Badge System
+List<SingleBadgeColor> badgeColors - A list of color sets for categorical badges, where each SingleBadgeColor contains:
+
+Color light1, light2, light3 - Tonal variations for light badge styles.
+
+Color thick1, thick2, thick3 - Tonal variations for thick/solid badge styles.
+
+AppBrandColorScheme - Brand Colors
+Defines the official brand color palette.
+
+Color skyline, aqua, violet, amethyst, berry, coral, golden, amber, lemon
+
+AppOtherColorsColorScheme - Miscellaneous
+Color textHighlight - A utility color for highlighting text.
+
+3. Layout & Typography Subclasses
+AppTextStyle - Typography System
+A comprehensive type scale based on Material Design 3 principles.
+
+Display: DisplayLarge, DisplayMedium, DisplaySmall
+
+Headline: HeadlineLarge, HeadlineMedium, HeadlineSmall
+
+Title: TitleLarge, TitleMedium, TitleSmall
+
+Body: BodyLarge, BodyMedium, BodySmall
+
+Label: LabelLarge, LabelMedium, LabelSmall
+
+Each style (e.g., displayLarge) provides methods for different font weights or styles, such as .standard(), .enhanced(), and .prominent().
+
+AppBorderRadius - Border Radius Tokens
+A token scale for consistent corner rounding.
+
+double xs, s, m, l, xl, xxl
+
+AppSpacing - Spacing Tokens
+A token scale for consistent padding, margins, and layout gaps.
+
+double xs, s, m, l, xl, xxl
+
+4. Visual Effects Subclasses
+AppShadow - Shadow System
+Defines elevation levels using a list of shadows.
+
+List<AppBoxShadow> small - For low-elevation components.
+
+List<AppBoxShadow> medium - For higher-elevation components.
+
+Each AppBoxShadow contains: offsetX, offsetY, blurRadius, spreadRadius, and color.
+
+
+This is how i passed the value from AppthemeData to flutter ThemeData
+
+import 'package:flutter/material.dart';
+import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
+
+/// [AppFlutterTheme] converts design tokens defined in [AppThemeData]
+/// to Flutter's native [ThemeData] format.
+///
+/// REFINEMENTS:
+/// 1. SINGLE SOURCE OF TRUTH: Component themes now reference the generated
+///    `colorScheme` object, ensuring consistency.
+/// 2. INTERACTIVE STATES: Hover states are now implemented for buttons using
+///    `WidgetStateProperty` and your hover tokens.
+/// 3. MATERIAL 3 SURFACES: Your layer tokens are fully mapped to M3's
+///    `surfaceContainer` properties for enhanced depth.
+class AppFlutterTheme {
+  const AppFlutterTheme._(); // Prevent instantiation
+
+  static ThemeData toFlutterTheme(AppThemeData tokens, {required Brightness brightness}) {
+    // Keep direct token references for clarity and for areas where ColorScheme
+    // doesn't have a direct mapping (e.g., custom hover colors).
+    final text = tokens.textColorScheme;
+    final fill = tokens.fillColorScheme;
+    final border = tokens.borderColorScheme;
+    final surface = tokens.surfaceColorScheme;
+    final background = tokens.backgroundColorScheme;
+    final icon = tokens.iconColorScheme;
+    final spacing = tokens.spacing;
+    final radius = tokens.borderRadius;
+    final textStyle = tokens.textStyle;
+
+    // --- 1. DEFINE THE CORE COLOR SCHEME ---
+    // This becomes the single source of truth for most color properties.
+    final colorScheme = ColorScheme(
+      brightness: brightness,
+      primary: fill.themeThick,
+      onPrimary: text.onFill,
+      primaryContainer: fill.themeSelect,
+      onPrimaryContainer: text.primary,
+
+      // For semantic purposes, we can map secondary to a neutral or brand color.
+      // Here, we'll map it to a neutral fill for this example.
+      secondary: fill.primary,
+      onSecondary: text.primary,
+      secondaryContainer: fill.primaryHover,
+      onSecondaryContainer: text.primary,
+
+      // Tertiary is often used for less prominent actions or accents.
+      tertiary: fill.infoLight,
+      onTertiary: text.primary,
+      tertiaryContainer: fill.primaryHover,
+      onTertiaryContainer: text.primary,
+
+      error: border.errorThick,
+      onError: text.onFill,
+      errorContainer: fill.errorLight,
+      onErrorContainer: text.error,
+
+      // --- REFINEMENT: Mapped all surface layers for M3 depth ---
+      surface: surface.primary,
+      onSurface: text.primary,
+      surfaceDim: surface.overlay,
+      surfaceBright: surface.layer01, // Brightest surface
+      surfaceContainerLowest: surface.layer04, // Deepest layer
+      surfaceContainerLow: surface.layer03,
+      surfaceContainer: surface.layer02,
+      surfaceContainerHigh: surface.layer01,
+      surfaceContainerHighest: surface.layer01, // Most prominent layer
+
+      onSurfaceVariant: text.secondary,
+      outline: border.primary,
+      outlineVariant: border.primaryHover,
+      shadow: Colors.black.withValues(alpha: 0.1),
+      scrim: surface.overlay,
+      inverseSurface: surface.inverse,
+      onInverseSurface: text.onFill,
+      inversePrimary: text.onFill, // Primary color on an inverse surface
+    );
+
+    return ThemeData(
+      useMaterial3: true,
+      brightness: brightness,
+      fontFamily: textStyle.bodyMedium.fontFamily,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: background.primary,
+      canvasColor: colorScheme.surface,
+      dividerColor: colorScheme.outline,
+      disabledColor: text.quaternary,
+
+      // --- REFINEMENT: Text colors now reference the ColorScheme ---
+      textTheme: TextTheme(
+        displayLarge: textStyle.displayLarge.standard(color: colorScheme.onSurface),
+        displayMedium: textStyle.displayMedium.standard(color: colorScheme.onSurface),
+        displaySmall: textStyle.displaySmall.standard(color: colorScheme.onSurface),
+        headlineLarge: textStyle.headlineLarge.standard(color: colorScheme.onSurface),
+        headlineMedium: textStyle.headlineMedium.standard(color: colorScheme.onSurface),
+        headlineSmall: textStyle.headlineSmall.standard(color: colorScheme.onSurface),
+        titleLarge: textStyle.titleLarge.standard(color: colorScheme.onSurface),
+        titleMedium: textStyle.titleMedium.standard(color: colorScheme.onSurface),
+        titleSmall: textStyle.titleSmall.standard(color: colorScheme.onSurfaceVariant),
+        bodyLarge: textStyle.bodyLarge.standard(color: colorScheme.onSurface),
+        bodyMedium: textStyle.bodyMedium.standard(color: colorScheme.onSurface),
+        bodySmall: textStyle.bodySmall.standard(color: colorScheme.onSurfaceVariant),
+        labelLarge: textStyle.labelLarge.standard(color: colorScheme.onSurface),
+        labelMedium: textStyle.labelMedium.standard(color: colorScheme.onSurfaceVariant),
+        labelSmall: textStyle.labelSmall.standard(color: colorScheme.tertiary),
+      ),
+
+      iconTheme: IconThemeData(color: icon.primary, size: 24),
+      primaryIconTheme: IconThemeData(color: colorScheme.onPrimary, size: 24),
+
+      // --- REFINEMENT: Switched to ButtonStyle and implemented hover states ---
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return fill.themeThickHover;
+            if (states.contains(WidgetState.disabled))
+              return colorScheme.onSurface.withValues(alpha: 0.12);
+            return colorScheme.primary; // Default
+          }),
+          foregroundColor: WidgetStateProperty.all(colorScheme.onPrimary),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.m)),
+          ),
+          padding: WidgetStateProperty.all(
+            EdgeInsets.symmetric(horizontal: spacing.xl, vertical: spacing.l),
+          ),
+          textStyle: WidgetStateProperty.all(textStyle.labelLarge.standard()),
+          elevation: WidgetStateProperty.all(2),
+          overlayColor: WidgetStateProperty.all(Colors.white.withValues(alpha: 0.1)),
+        ),
+      ),
+
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return text.actionHover;
+            return text.action; // Default from your tokens
+          }),
+          overlayColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return fill.primaryHover;
+            return Colors.transparent;
+          }),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.m)),
+          ),
+          padding: WidgetStateProperty.all(
+            EdgeInsets.symmetric(horizontal: spacing.l, vertical: spacing.m),
+          ),
+          textStyle: WidgetStateProperty.all(textStyle.labelLarge.standard()),
+        ),
+      ),
+
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return colorScheme.primary;
+            return colorScheme.onSurface;
+          }),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered))
+              return colorScheme.primary.withValues(alpha: 0.05);
+            return Colors.transparent;
+          }),
+          side: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.focused) ||
+                states.contains(WidgetState.pressed)) {
+              return BorderSide(color: colorScheme.primary, width: 2);
+            }
+            if (states.contains(WidgetState.hovered)) {
+              return BorderSide(color: colorScheme.outlineVariant);
+            }
+            return BorderSide(color: colorScheme.outline);
+          }),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.m)),
+          ),
+          padding: WidgetStateProperty.all(
+            EdgeInsets.symmetric(horizontal: spacing.xl, vertical: spacing.l),
+          ),
+          textStyle: WidgetStateProperty.all(textStyle.labelLarge.standard()),
+        ),
+      ),
+
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.onPrimary,
+        hoverColor: fill.themeThickHover,
+        elevation: 6,
+        focusElevation: 8,
+        hoverElevation: 8,
+        highlightElevation: 12,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.l)),
+      ),
+
+      // --- REFINEMENT: Using ColorScheme and surface containers for consistency ---
+      appBarTheme: AppBarTheme(
+        backgroundColor: colorScheme.surface, // Use a base surface color
+        foregroundColor: colorScheme.onSurface,
+        elevation: 0,
+        scrolledUnderElevation: 2,
+        shadowColor: colorScheme.shadow,
+        centerTitle: false,
+        titleTextStyle: textStyle.titleLarge.standard(color: colorScheme.onSurface),
+        iconTheme: IconThemeData(color: colorScheme.onSurfaceVariant),
+        actionsIconTheme: IconThemeData(color: colorScheme.onSurfaceVariant),
+      ),
+
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: colorScheme.surfaceContainer,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius.m),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius.m),
+          borderSide: BorderSide(color: colorScheme.outline),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius.m),
+          borderSide: BorderSide(color: colorScheme.primary, width: 2),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius.m),
+          borderSide: BorderSide(color: colorScheme.error),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius.m),
+          borderSide: BorderSide(color: colorScheme.error, width: 2),
+        ),
+        labelStyle: textStyle.bodyMedium.standard(color: colorScheme.onSurfaceVariant),
+        hintStyle: textStyle.bodyMedium.standard(color: text.tertiary),
+        errorStyle: textStyle.bodySmall.standard(color: colorScheme.error),
+        helperStyle: textStyle.bodySmall.standard(color: colorScheme.onSurfaceVariant),
+        contentPadding: EdgeInsets.symmetric(horizontal: spacing.l, vertical: spacing.m),
+      ),
+
+      chipTheme: ChipThemeData(
+        backgroundColor: colorScheme.surfaceContainer,
+        disabledColor: colorScheme.onSurface.withValues(alpha: 0.12),
+        selectedColor: colorScheme.primaryContainer,
+        padding: EdgeInsets.all(spacing.m),
+        labelStyle: textStyle.labelMedium.standard(color: colorScheme.onSurfaceVariant),
+        secondaryLabelStyle:
+            textStyle.labelMedium.standard(color: colorScheme.onPrimaryContainer),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.s)),
+        side: BorderSide(color: colorScheme.outline),
+      ),
+
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) return colorScheme.primary;
+          return Colors.transparent;
+        }),
+        checkColor: WidgetStateProperty.all(colorScheme.onPrimary),
+        side: BorderSide(color: colorScheme.outline, width: 2),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.xs)),
+      ),
+
+      dialogTheme: DialogThemeData(
+        backgroundColor: colorScheme.surfaceContainerHigh, // Use a higher surface
+        elevation: 8,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.l)),
+        titleTextStyle: textStyle.headlineSmall.standard(color: colorScheme.onSurface),
+        contentTextStyle:
+            textStyle.bodyMedium.standard(color: colorScheme.onSurfaceVariant),
+      ),
+
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: colorScheme.inverseSurface,
+        contentTextStyle:
+            textStyle.bodyMedium.standard(color: colorScheme.onInverseSurface),
+        actionTextColor: colorScheme.inversePrimary,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.m)),
+        elevation: 6,
+      ),
+
+      tabBarTheme: TabBarThemeData(
+        labelColor: colorScheme.primary,
+        unselectedLabelColor: colorScheme.onSurfaceVariant,
+        labelStyle: textStyle.labelLarge.standard(),
+        unselectedLabelStyle: textStyle.labelLarge.standard(),
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(color: colorScheme.primary, width: 2),
+        ),
+        indicatorSize: TabBarIndicatorSize.label,
+        dividerColor: colorScheme.outline,
+      ),
+
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: colorScheme.surfaceContainer,
+        selectedItemColor: colorScheme.primary,
+        unselectedItemColor: colorScheme.onSurfaceVariant,
+        selectedLabelStyle: textStyle.labelSmall.standard(),
+        unselectedLabelStyle: textStyle.labelSmall.standard(),
+        type: BottomNavigationBarType.fixed,
+        elevation: 8,
+      ),
+
+      dividerTheme: DividerThemeData(
+        color: colorScheme.outline,
+        thickness: 1,
+        space: spacing.l,
+      ),
+
+      cardTheme: CardThemeData(
+        color: colorScheme.surfaceContainer,
+        elevation: 1,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(radius.l),
+          side: BorderSide(color: colorScheme.outline.withValues(alpha: 0.5)),
+        ),
+        margin: EdgeInsets.all(spacing.m),
+      ),
+
+      listTileTheme: ListTileThemeData(
+        tileColor: Colors.transparent, // Usually better to have transparent tiles
+        selectedTileColor: colorScheme.primaryContainer,
+        iconColor: colorScheme.onSurfaceVariant,
+        textColor: colorScheme.onSurface,
+        titleTextStyle: textStyle.bodyLarge.standard(),
+        subtitleTextStyle:
+            textStyle.bodyMedium.standard(color: colorScheme.onSurfaceVariant),
+        contentPadding: EdgeInsets.symmetric(horizontal: spacing.l),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.m)),
+      ),
+
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: colorScheme.primary,
+        linearTrackColor: colorScheme.surfaceContainerHighest,
+        circularTrackColor: colorScheme.surfaceContainerHighest,
+      ),
+
+      tooltipTheme: TooltipThemeData(
+        decoration: BoxDecoration(
+          color: colorScheme.inverseSurface,
+          borderRadius: BorderRadius.circular(radius.s),
+        ),
+        textStyle: textStyle.bodySmall.standard(color: colorScheme.onInverseSurface),
+        padding: EdgeInsets.symmetric(horizontal: spacing.m, vertical: spacing.s),
+      ),
+    );
+  }
+}
+
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
+
+class AppTheme extends StatelessWidget {
+  const AppTheme({required this.data, required this.child, super.key});
+
+  final AppThemeData data;
+  final Widget child;
+
+  static AppThemeData of(BuildContext context, {bool listen = true}) {
+    final provider = maybeOf(context, listen: listen);
+    if (provider == null) {
+      throw FlutterError('''
+        AppTheme.of() called with a context that does not contain a AppTheme.\n
+        No AppTheme ancestor could be found starting from the context that was passed to AppTheme.of().
+        This can happen because you do not have a AppTheme widget (which introduces a AppTheme),
+        or it can happen if the context you use comes from a widget above this widget.\n
+        The context used was: $context''');
+    }
+    return provider;
+  }
+
+  static AppThemeData? maybeOf(BuildContext context, {bool listen = true}) {
+    if (listen) {
+      return context.dependOnInheritedWidgetOfExactType<AppInheritedTheme>()?.themeData;
+    }
+    final provider =
+        context.getElementForInheritedWidgetOfExactType<AppInheritedTheme>()?.widget;
+
+    return (provider as AppInheritedTheme?)?.themeData;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AppInheritedTheme(themeData: data, child: child);
+  }
+}
+
+class AppInheritedTheme extends InheritedTheme {
+  const AppInheritedTheme({required this.themeData, required super.child, super.key});
+
+  final AppThemeData themeData;
+
+  @override
+  Widget wrap(BuildContext context, Widget child) {
+    return AppTheme(data: themeData, child: child);
+  }
+
+  @override
+  bool updateShouldNotify(AppInheritedTheme oldWidget) =>
+      themeData != oldWidget.themeData;
+}
+
+/// An interpolation between two [AppThemeData]s.
+///
+/// This class specializes the interpolation of [Tween<AppThemeData>] to
+/// call the [AppThemeData.lerp] method.
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+class AppThemeDataTween extends Tween<AppThemeData> {
+  /// Creates a [AppThemeData] tween.
+  ///
+  /// The [begin] and [end] properties must be non-null before the tween is
+  /// first used, but the arguments can be null if the values are going to be
+  /// filled in later.
+  AppThemeDataTween({super.begin, super.end});
+
+  // @override
+  // AppThemeData lerp(double t) => AppThemeData.lerp(begin!, end!, t);
+}
+
+class AnimatedAppTheme extends ImplicitlyAnimatedWidget {
+  /// Creates an animated theme.
+  ///
+  /// By default, the theme transition uses a linear curve.
+  const AnimatedAppTheme({
+    required this.data,
+    required this.child,
+    super.key,
+    super.curve,
+    super.duration = kThemeAnimationDuration,
+    super.onEnd,
+  });
+
+  /// Specifies the color and typography values for descendant widgets.
+  final AppThemeData data;
+
+  /// The widget below this widget in the tree.
+  ///
+  /// {@macro flutter.widgets.ProxyWidget.child}
+  final Widget child;
+
+  @override
+  AnimatedWidgetBaseState<AnimatedAppTheme> createState() => _AnimatedThemeState();
+}
+
+class _AnimatedThemeState extends AnimatedWidgetBaseState<AnimatedAppTheme> {
+  AppThemeDataTween? data;
+
+  @override
+  void forEachTween(TweenVisitor<dynamic> visitor) {
+    data = visitor(
+      data,
+      widget.data,
+      (dynamic value) => AppThemeDataTween(begin: value as AppThemeData),
+    )! as AppThemeDataTween;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AppTheme(data: data!.evaluate(animation), child: widget.child);
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder description) {
+    super.debugFillProperties(description);
+    description.add(
+      DiagnosticsProperty<AppThemeDataTween>(
+        'data',
+        data,
+        showName: false,
+        defaultValue: null,
+      ),
+    );
+  }
+}
+
+/// typography
+
+Here's a **concise, structured summary** of your code that an AI can follow and use correctly in production-level Flutter apps:
+
+---
+
+### ✅ **Purpose**
+
+This code defines a **scalable, responsive, type-safe text system** based on [Material Design Typography](https://m3.material.io/styles/typography/type-scale-tokens), with support for:
+
+* **Font scaling** by screen size (mobile/tablet/desktop)
+* **Font weight variants**: `standard`, `enhanced`, `prominent`
+* **Serialization** via `freezed` and `json_serializable`
+* **LERP support** for smooth font style transitions (e.g., in theme animations)
+
+---
+
+### 📦 **Structure**
+
+Each text role (e.g., `DisplayLarge`, `HeadlineMedium`, `BodySmall`, etc.) is a `@freezed` class:
+
+* Contains `fontFamily`
+* Has methods to generate `TextStyle` for:
+
+  * `.standard()` → regular weight (e.g. `w400`)
+  * `.enhanced()` → semi-bold (e.g. `w600`)
+  * `.prominent()` → bold (e.g. `w700`)
+* Each variant supports optional overrides: `context`, `family`, `color`, `weight`.
+
+---
+
+### 🧠 **Font Scaling Logic**
+
+Defined in `ResponsiveBreakpoints.scaleFont(fontSize, context)`:
+
+* `≤ 600px` → mobile → base font size
+* `601–1024px` → tablet → `+12.5%` scale
+* `>1024px` → desktop → smooth fluid scale (capped at 25%)
+
+Used by all `_textStyle()` methods to ensure responsiveness.
+
+---
+
+### ⚙️ **Core TextStyle Construction**
+
+Shared `_textStyle()` builder method:
+
+```dart
+TextStyle(
+  inherit: false,
+  fontSize: ResponsiveBreakpoints.scaleFont(fontSize, context),
+  fontWeight: weight,
+  height: lineHeight,
+  letterSpacing: ...,
+  fontFamily: family,
+  ...
+)
+```
+
+---
+
+### 📊 **Variant Classes (Token Names)**
+
+Each of the following has its own `TextStyle` variations:
+
+| Token Class      | Base Size | Height Ratio | LetterSpacing |
+| ---------------- | --------- | ------------ | ------------- |
+| `DisplayLarge`   | 57        | 64 / 57      | 0             |
+| `DisplayMedium`  | 45        | 52 / 45      | 0             |
+| `DisplaySmall`   | 36        | 44 / 36      | 0             |
+| `HeadlineLarge`  | 32        | 40 / 32      | 0             |
+| `HeadlineMedium` | 28        | 36 / 28      | 0             |
+| `HeadlineSmall`  | 24        | 32 / 24      | 0             |
+| `TitleLarge`     | 22        | 28 / 22      | 0             |
+| `TitleMedium`    | 16        | 24 / 16      | 0.15          |
+| `TitleSmall`     | 14        | 20 / 14      | 0.1           |
+| `BodyLarge`      | 16        | 24 / 16      | 0.5           |
+| `BodyMedium`     | 14        | 20 / 14      | 0.25          |
+| `BodySmall`      | 12        | 16 / 12      | 0.4           |
+| `LabelLarge`     | 14        | 20 / 14      | 0.1           |
+| `LabelMedium`    | 12        | 16 / 12      | 0.5           |
+| `LabelSmall`     | 11        | 16 / 11      | 0.5           |
+
+---
+
+### ✅ **Best Practices Followed**
+
+* **Scalable**: Responsive typography across devices.
+* **Reusable**: Centralized text styles with variants.
+* **Clean API**: Descriptive methods (`standard()`, `prominent()`).
+* **Testable**: `freezed`-based data classes.
+* **Composable**: Encourages use in design tokens or design system.
+* **Theme Extension Ready**: Can be embedded in `ThemeData.extensions`.
+
+---
+
+### 💡 How to Use in Widgets
+
+```dart
+Text(
+  'Hello World',
+  style: context.textTheme.displayLarge.standard(context: context),
+)
+```
+
+Or:
+
+```dart
+final style = DisplayLarge(fontFamily: 'Roboto').prominent(context: context);
+```
+
+---
+
+### 🛠 AI-Readable Usage Summary
+
+**To define a text style:**
+
+```dart
+<TextToken>.standard(context: context, family: 'Roboto', color: ..., weight: ...)
+```
+
+**Tokens include:**
+`DisplayLarge`, `DisplayMedium`, `HeadlineLarge`, `TitleSmall`, `BodyLarge`, `LabelSmall`, etc.
+
+**You must provide:** `fontFamily` when creating the class.
+
+
+
+
+use this to import appTheme - import 'package:theme_ui_widgets/theme/app_theme.dart';

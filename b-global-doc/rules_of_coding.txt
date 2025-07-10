@@ -1,0 +1,4 @@
+
+Rules for coding 
+1. whenever you are using async - always use try and catch with 
+2. if something may take time use timeout

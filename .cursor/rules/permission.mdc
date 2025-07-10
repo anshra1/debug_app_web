@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Process:
+First, analyze the provided code
+Ask ALL necessary clarifying questions
+Wait for responses
+Generate documentation only after having complete understanding
+If any documentation aspect is uncertain, ask for clarification rather than making assumptions
+When I share a Dart file, please:
+
+Ask any necessary clarifying questions
+Only proceed with documentation generation after receiving clear answers
+Follow the documentation format exactly as specified
+ask my my permission before creating any code file or folder 

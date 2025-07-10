@@ -1,0 +1,74 @@
+I need you to analyze a Dart file and generate standardized documentation comments 
+that follow our project's documentation format. The documentation should be placed 
+directly above the class/component definition.
+
+Documentation Format Rules:
+1. All components must have these standard sections in this exact order:
+   /// @component [ComponentName]
+   /// @category [Service|Manager|Widget|Extension]
+   /// @created [YYYY-MM-DD]
+   /// @lastModified [YYYY-MM-DD]
+   
+   /// @description
+   /// [Clear, concise description of what this component does]
+   
+   /// @initialization
+   /// [Code example showing how to initialize/get instance]
+   
+   /// @How to use
+   /// [Code example showing typical usage pattern]
+   
+   /// @method
+   /// [List and explain each public method's purpose]
+   
+   /// @dispose
+   /// [If applicable, what needs cleanup/disposal]
+   
+   /// @important
+   /// [List of critical usage notes/warnings]
+   
+   /// @errors
+   /// [Common errors and their causes]
+   
+   /// @testing
+   /// See: [test file path following this convention:]
+   /// - For lib/core/services/x_service.dart → test/core/services/x_service_test.dart
+   /// - For lib/core/managers/x_manager.dart → test/core/managers/x_manager_test.dart
+   /// - For lib/core/widgets/x_widget.dart → test/core/widgets/x_widget_test.dart
+
+   /// Customization Points:
+   /// - List all ways to customize the widget
+   /// - Show extension points
+   /// - Show theme override options
+   /// - show how can change the look of this widget 
+   
+   /// @relatedComponents
+   /// [List related components and their relationships]
+
+2. Test file paths must mirror the source file structure:
+Source: lib/[path/to/file.dart]
+Test: test/[path/to/file_test.dart]
+
+if you do not find the test file - write not found test file
+
+3.Category-specific requirements:
+Services: Must include initialization via GetIt
+Managers: Must include lifecycle management
+Widgets: Must include build context usage
+Extensions: Must show extension methods
+
+
+
+Process:
+First, analyze the provided code
+Ask ALL necessary clarifying questions
+Wait for responses
+Generate documentation only after having complete understanding
+If any documentation aspect is uncertain, ask for clarification rather than making assumptions
+When I share a Dart file, please:
+
+Ask any necessary clarifying questions
+Only proceed with documentation generation after receiving clear answers
+Follow the documentation format exactly as specified
+
+ask my my permission before creating any code file or folder 

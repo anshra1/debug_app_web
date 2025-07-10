@@ -1,0 +1,29 @@
+TASK: Read Project Component Registry
+
+Before we proceed with any tasks, please:
+
+1. Read the project's component registry at b-global-doc/context-docs/component_registry.md
+   This file contains:
+   - Available services, managers, widgets, and utilities
+   - Their locations, descriptions, and dependencies
+   - Project patterns and conventions
+   - Directory structure
+
+2. Use this information to:
+   - Understand available components you can use
+   - Follow project patterns and conventions
+   - Locate relevant components
+   - Understand component relationships
+   - Know where to add new components
+
+Example usage:
+"Before we start, please read b-global-doc/context-docs/component_registry.md to understand what components are available in the project and where they are located."
+
+This will help you:
+1. Make informed suggestions using existing components
+2. Follow project conventions
+3. Maintain consistent project structure
+4. Avoid recreating existing functionality
+5. Understand component dependencies
+
+Please confirm once you've read the registry so we can proceed with the task.
