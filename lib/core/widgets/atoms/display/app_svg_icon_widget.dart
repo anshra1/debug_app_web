@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:theme_ui_widgets/theme/app_theme.dart';
+import 'package:theme_ui_widgets/app_theme.dart';
 
 // =============================================================================
 // CONFIG CLASS FOR STYLING

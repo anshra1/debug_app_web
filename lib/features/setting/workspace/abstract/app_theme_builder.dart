@@ -1,9 +1,9 @@
-import 'package:debug_app_web/features/setting/workspace/models/app_theme_color_set.dart';
+import 'package:debug_app_web/features/setting/workspace/models/import_theme_color_set.dart';
 
 abstract class AppThemeColorSetBuilder {
   const AppThemeColorSetBuilder();
 
-  AppThemeColorSet light();
+  ImportThemeColorSet light();
 
-  AppThemeColorSet dark();
+  ImportThemeColorSet dark();
 }

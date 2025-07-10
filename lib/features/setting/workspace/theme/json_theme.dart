@@ -1,20 +1,12 @@
 import 'package:debug_app_web/features/setting/workspace/abstract/app_theme_builder.dart';
-import 'package:debug_app_web/features/setting/workspace/models/app_theme_color_set.dart';
+import 'package:debug_app_web/features/setting/workspace/models/import_theme_color_set.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/background_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/badge_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/border_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/brand_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/fill_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/icon_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/other_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/surface_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/surface_container_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/text_color_scheme.dart';
+
+import 'package:theme_ui_widgets/theme_ui_widgets.dart';
 
 class AppCustomJsonTheme implements AppThemeColorSetBuilder {
   @override
-  AppThemeColorSet light() {
+  ImportThemeColorSet light() {
     const textColorScheme = AppTextColorScheme(
       primary: Color(0xff555555),
       secondary: Color(0xff777777),
@@ -152,7 +144,7 @@ class AppCustomJsonTheme implements AppThemeColorSetBuilder {
       textHighlight: Color(0xffe9f284),
     );
 
-    return const AppThemeColorSet(
+    return const ImportThemeColorSet(
       themeName: 'custom_json_theme',
       textColorScheme: textColorScheme,
       borderColorScheme: borderColorScheme,
@@ -160,15 +152,14 @@ class AppCustomJsonTheme implements AppThemeColorSetBuilder {
       surfaceColorScheme: surfaceColorScheme,
       backgroundColorScheme: backgroundColorScheme,
       iconColorScheme: iconColorScheme,
-      brandColorScheme: brandColorScheme,
-      otherColorsColorScheme: otherColorsColorScheme,
+
       surfaceContainerColorScheme: surfaceContainerColorScheme,
       badgeColorScheme: AppBadgeColorScheme(badgeColors: []),
     );
   }
 
   @override
-  AppThemeColorSet dark() {
+  ImportThemeColorSet dark() {
     const textColorScheme = AppTextColorScheme(
       primary: Color(0xfff8f8f2),
       secondary: Color(0xfff8f8f2),
@@ -302,11 +293,9 @@ class AppCustomJsonTheme implements AppThemeColorSetBuilder {
       lemon: Color(0xff8be9fd),
     );
 
-    const otherColorsColorScheme = AppOtherColorsColorScheme(
-      textHighlight: Color(0xff8be9fd),
-    );
+    
 
-    return const AppThemeColorSet(
+    return const ImportThemeColorSet(
       themeName: 'custom_json_theme',
       textColorScheme: textColorScheme,
       borderColorScheme: borderColorScheme,
@@ -314,8 +303,7 @@ class AppCustomJsonTheme implements AppThemeColorSetBuilder {
       surfaceColorScheme: surfaceColorScheme,
       backgroundColorScheme: backgroundColorScheme,
       iconColorScheme: iconColorScheme,
-      brandColorScheme: brandColorScheme,
-      otherColorsColorScheme: otherColorsColorScheme,
+    
       surfaceContainerColorScheme: surfaceContainerColorScheme,
       badgeColorScheme: AppBadgeColorScheme(badgeColors: []),
     );

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'app_theme_color_set.dart';
+part of 'import_theme_color_set.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-AppThemeColorSet _$AppThemeColorSetFromJson(Map<String, dynamic> json) {
-  return _AppThemeColorSet.fromJson(json);
+ImportThemeColorSet _$ImportThemeColorSetFromJson(Map<String, dynamic> json) {
+  return _ImportThemeColorSet.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AppThemeColorSet {
+mixin _$ImportThemeColorSet {
   String get themeName => throw _privateConstructorUsedError;
   AppTextColorScheme get textColorScheme => throw _privateConstructorUsedError;
   AppIconColorScheme get iconColorScheme => throw _privateConstructorUsedError;
@@ -32,28 +32,24 @@ mixin _$AppThemeColorSet {
   AppFillColorScheme get fillColorScheme => throw _privateConstructorUsedError;
   AppSurfaceColorScheme get surfaceColorScheme =>
       throw _privateConstructorUsedError;
-  AppBrandColorScheme get brandColorScheme =>
-      throw _privateConstructorUsedError;
   AppSurfaceContainerColorScheme get surfaceContainerColorScheme =>
       throw _privateConstructorUsedError;
-  AppOtherColorsColorScheme get otherColorsColorScheme =>
-      throw _privateConstructorUsedError;
 
-  /// Serializes this AppThemeColorSet to a JSON map.
+  /// Serializes this ImportThemeColorSet to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AppThemeColorSetCopyWith<AppThemeColorSet> get copyWith =>
+  $ImportThemeColorSetCopyWith<ImportThemeColorSet> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AppThemeColorSetCopyWith<$Res> {
-  factory $AppThemeColorSetCopyWith(
-          AppThemeColorSet value, $Res Function(AppThemeColorSet) then) =
-      _$AppThemeColorSetCopyWithImpl<$Res, AppThemeColorSet>;
+abstract class $ImportThemeColorSetCopyWith<$Res> {
+  factory $ImportThemeColorSetCopyWith(
+          ImportThemeColorSet value, $Res Function(ImportThemeColorSet) then) =
+      _$ImportThemeColorSetCopyWithImpl<$Res, ImportThemeColorSet>;
   @useResult
   $Res call(
       {String themeName,
@@ -64,9 +60,7 @@ abstract class $AppThemeColorSetCopyWith<$Res> {
       AppBackgroundColorScheme backgroundColorScheme,
       AppFillColorScheme fillColorScheme,
       AppSurfaceColorScheme surfaceColorScheme,
-      AppBrandColorScheme brandColorScheme,
-      AppSurfaceContainerColorScheme surfaceContainerColorScheme,
-      AppOtherColorsColorScheme otherColorsColorScheme});
+      AppSurfaceContainerColorScheme surfaceContainerColorScheme});
 
   $AppTextColorSchemeCopyWith<$Res> get textColorScheme;
   $AppIconColorSchemeCopyWith<$Res> get iconColorScheme;
@@ -75,22 +69,20 @@ abstract class $AppThemeColorSetCopyWith<$Res> {
   $AppBackgroundColorSchemeCopyWith<$Res> get backgroundColorScheme;
   $AppFillColorSchemeCopyWith<$Res> get fillColorScheme;
   $AppSurfaceColorSchemeCopyWith<$Res> get surfaceColorScheme;
-  $AppBrandColorSchemeCopyWith<$Res> get brandColorScheme;
   $AppSurfaceContainerColorSchemeCopyWith<$Res> get surfaceContainerColorScheme;
-  $AppOtherColorsColorSchemeCopyWith<$Res> get otherColorsColorScheme;
 }
 
 /// @nodoc
-class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
-    implements $AppThemeColorSetCopyWith<$Res> {
-  _$AppThemeColorSetCopyWithImpl(this._value, this._then);
+class _$ImportThemeColorSetCopyWithImpl<$Res, $Val extends ImportThemeColorSet>
+    implements $ImportThemeColorSetCopyWith<$Res> {
+  _$ImportThemeColorSetCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -103,9 +95,7 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
     Object? backgroundColorScheme = null,
     Object? fillColorScheme = null,
     Object? surfaceColorScheme = null,
-    Object? brandColorScheme = null,
     Object? surfaceContainerColorScheme = null,
-    Object? otherColorsColorScheme = null,
   }) {
     return _then(_value.copyWith(
       themeName: null == themeName
@@ -140,22 +130,14 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
           ? _value.surfaceColorScheme
           : surfaceColorScheme // ignore: cast_nullable_to_non_nullable
               as AppSurfaceColorScheme,
-      brandColorScheme: null == brandColorScheme
-          ? _value.brandColorScheme
-          : brandColorScheme // ignore: cast_nullable_to_non_nullable
-              as AppBrandColorScheme,
       surfaceContainerColorScheme: null == surfaceContainerColorScheme
           ? _value.surfaceContainerColorScheme
           : surfaceContainerColorScheme // ignore: cast_nullable_to_non_nullable
               as AppSurfaceContainerColorScheme,
-      otherColorsColorScheme: null == otherColorsColorScheme
-          ? _value.otherColorsColorScheme
-          : otherColorsColorScheme // ignore: cast_nullable_to_non_nullable
-              as AppOtherColorsColorScheme,
     ) as $Val);
   }
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -165,7 +147,7 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
     });
   }
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -175,7 +157,7 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
     });
   }
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -186,7 +168,7 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
     });
   }
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -196,7 +178,7 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
     });
   }
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -207,7 +189,7 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
     });
   }
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -217,7 +199,7 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
     });
   }
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -228,17 +210,7 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
     });
   }
 
-  /// Create a copy of AppThemeColorSet
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AppBrandColorSchemeCopyWith<$Res> get brandColorScheme {
-    return $AppBrandColorSchemeCopyWith<$Res>(_value.brandColorScheme, (value) {
-      return _then(_value.copyWith(brandColorScheme: value) as $Val);
-    });
-  }
-
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -249,25 +221,14 @@ class _$AppThemeColorSetCopyWithImpl<$Res, $Val extends AppThemeColorSet>
       return _then(_value.copyWith(surfaceContainerColorScheme: value) as $Val);
     });
   }
-
-  /// Create a copy of AppThemeColorSet
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AppOtherColorsColorSchemeCopyWith<$Res> get otherColorsColorScheme {
-    return $AppOtherColorsColorSchemeCopyWith<$Res>(
-        _value.otherColorsColorScheme, (value) {
-      return _then(_value.copyWith(otherColorsColorScheme: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$AppThemeColorSetImplCopyWith<$Res>
-    implements $AppThemeColorSetCopyWith<$Res> {
-  factory _$$AppThemeColorSetImplCopyWith(_$AppThemeColorSetImpl value,
-          $Res Function(_$AppThemeColorSetImpl) then) =
-      __$$AppThemeColorSetImplCopyWithImpl<$Res>;
+abstract class _$$ImportThemeColorSetImplCopyWith<$Res>
+    implements $ImportThemeColorSetCopyWith<$Res> {
+  factory _$$ImportThemeColorSetImplCopyWith(_$ImportThemeColorSetImpl value,
+          $Res Function(_$ImportThemeColorSetImpl) then) =
+      __$$ImportThemeColorSetImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -279,9 +240,7 @@ abstract class _$$AppThemeColorSetImplCopyWith<$Res>
       AppBackgroundColorScheme backgroundColorScheme,
       AppFillColorScheme fillColorScheme,
       AppSurfaceColorScheme surfaceColorScheme,
-      AppBrandColorScheme brandColorScheme,
-      AppSurfaceContainerColorScheme surfaceContainerColorScheme,
-      AppOtherColorsColorScheme otherColorsColorScheme});
+      AppSurfaceContainerColorScheme surfaceContainerColorScheme});
 
   @override
   $AppTextColorSchemeCopyWith<$Res> get textColorScheme;
@@ -298,22 +257,18 @@ abstract class _$$AppThemeColorSetImplCopyWith<$Res>
   @override
   $AppSurfaceColorSchemeCopyWith<$Res> get surfaceColorScheme;
   @override
-  $AppBrandColorSchemeCopyWith<$Res> get brandColorScheme;
-  @override
   $AppSurfaceContainerColorSchemeCopyWith<$Res> get surfaceContainerColorScheme;
-  @override
-  $AppOtherColorsColorSchemeCopyWith<$Res> get otherColorsColorScheme;
 }
 
 /// @nodoc
-class __$$AppThemeColorSetImplCopyWithImpl<$Res>
-    extends _$AppThemeColorSetCopyWithImpl<$Res, _$AppThemeColorSetImpl>
-    implements _$$AppThemeColorSetImplCopyWith<$Res> {
-  __$$AppThemeColorSetImplCopyWithImpl(_$AppThemeColorSetImpl _value,
-      $Res Function(_$AppThemeColorSetImpl) _then)
+class __$$ImportThemeColorSetImplCopyWithImpl<$Res>
+    extends _$ImportThemeColorSetCopyWithImpl<$Res, _$ImportThemeColorSetImpl>
+    implements _$$ImportThemeColorSetImplCopyWith<$Res> {
+  __$$ImportThemeColorSetImplCopyWithImpl(_$ImportThemeColorSetImpl _value,
+      $Res Function(_$ImportThemeColorSetImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -326,11 +281,9 @@ class __$$AppThemeColorSetImplCopyWithImpl<$Res>
     Object? backgroundColorScheme = null,
     Object? fillColorScheme = null,
     Object? surfaceColorScheme = null,
-    Object? brandColorScheme = null,
     Object? surfaceContainerColorScheme = null,
-    Object? otherColorsColorScheme = null,
   }) {
-    return _then(_$AppThemeColorSetImpl(
+    return _then(_$ImportThemeColorSetImpl(
       themeName: null == themeName
           ? _value.themeName
           : themeName // ignore: cast_nullable_to_non_nullable
@@ -363,26 +316,18 @@ class __$$AppThemeColorSetImplCopyWithImpl<$Res>
           ? _value.surfaceColorScheme
           : surfaceColorScheme // ignore: cast_nullable_to_non_nullable
               as AppSurfaceColorScheme,
-      brandColorScheme: null == brandColorScheme
-          ? _value.brandColorScheme
-          : brandColorScheme // ignore: cast_nullable_to_non_nullable
-              as AppBrandColorScheme,
       surfaceContainerColorScheme: null == surfaceContainerColorScheme
           ? _value.surfaceContainerColorScheme
           : surfaceContainerColorScheme // ignore: cast_nullable_to_non_nullable
               as AppSurfaceContainerColorScheme,
-      otherColorsColorScheme: null == otherColorsColorScheme
-          ? _value.otherColorsColorScheme
-          : otherColorsColorScheme // ignore: cast_nullable_to_non_nullable
-              as AppOtherColorsColorScheme,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AppThemeColorSetImpl implements _AppThemeColorSet {
-  const _$AppThemeColorSetImpl(
+class _$ImportThemeColorSetImpl implements _ImportThemeColorSet {
+  const _$ImportThemeColorSetImpl(
       {required this.themeName,
       required this.textColorScheme,
       required this.iconColorScheme,
@@ -391,12 +336,10 @@ class _$AppThemeColorSetImpl implements _AppThemeColorSet {
       required this.backgroundColorScheme,
       required this.fillColorScheme,
       required this.surfaceColorScheme,
-      required this.brandColorScheme,
-      required this.surfaceContainerColorScheme,
-      required this.otherColorsColorScheme});
+      required this.surfaceContainerColorScheme});
 
-  factory _$AppThemeColorSetImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AppThemeColorSetImplFromJson(json);
+  factory _$ImportThemeColorSetImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImportThemeColorSetImplFromJson(json);
 
   @override
   final String themeName;
@@ -415,22 +358,18 @@ class _$AppThemeColorSetImpl implements _AppThemeColorSet {
   @override
   final AppSurfaceColorScheme surfaceColorScheme;
   @override
-  final AppBrandColorScheme brandColorScheme;
-  @override
   final AppSurfaceContainerColorScheme surfaceContainerColorScheme;
-  @override
-  final AppOtherColorsColorScheme otherColorsColorScheme;
 
   @override
   String toString() {
-    return 'AppThemeColorSet(themeName: $themeName, textColorScheme: $textColorScheme, iconColorScheme: $iconColorScheme, borderColorScheme: $borderColorScheme, badgeColorScheme: $badgeColorScheme, backgroundColorScheme: $backgroundColorScheme, fillColorScheme: $fillColorScheme, surfaceColorScheme: $surfaceColorScheme, brandColorScheme: $brandColorScheme, surfaceContainerColorScheme: $surfaceContainerColorScheme, otherColorsColorScheme: $otherColorsColorScheme)';
+    return 'ImportThemeColorSet(themeName: $themeName, textColorScheme: $textColorScheme, iconColorScheme: $iconColorScheme, borderColorScheme: $borderColorScheme, badgeColorScheme: $badgeColorScheme, backgroundColorScheme: $backgroundColorScheme, fillColorScheme: $fillColorScheme, surfaceColorScheme: $surfaceColorScheme, surfaceContainerColorScheme: $surfaceContainerColorScheme)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AppThemeColorSetImpl &&
+            other is _$ImportThemeColorSetImpl &&
             (identical(other.themeName, themeName) ||
                 other.themeName == themeName) &&
             (identical(other.textColorScheme, textColorScheme) ||
@@ -447,14 +386,10 @@ class _$AppThemeColorSetImpl implements _AppThemeColorSet {
                 other.fillColorScheme == fillColorScheme) &&
             (identical(other.surfaceColorScheme, surfaceColorScheme) ||
                 other.surfaceColorScheme == surfaceColorScheme) &&
-            (identical(other.brandColorScheme, brandColorScheme) ||
-                other.brandColorScheme == brandColorScheme) &&
             (identical(other.surfaceContainerColorScheme,
                     surfaceContainerColorScheme) ||
                 other.surfaceContainerColorScheme ==
-                    surfaceContainerColorScheme) &&
-            (identical(other.otherColorsColorScheme, otherColorsColorScheme) ||
-                other.otherColorsColorScheme == otherColorsColorScheme));
+                    surfaceContainerColorScheme));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -469,29 +404,27 @@ class _$AppThemeColorSetImpl implements _AppThemeColorSet {
       backgroundColorScheme,
       fillColorScheme,
       surfaceColorScheme,
-      brandColorScheme,
-      surfaceContainerColorScheme,
-      otherColorsColorScheme);
+      surfaceContainerColorScheme);
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AppThemeColorSetImplCopyWith<_$AppThemeColorSetImpl> get copyWith =>
-      __$$AppThemeColorSetImplCopyWithImpl<_$AppThemeColorSetImpl>(
+  _$$ImportThemeColorSetImplCopyWith<_$ImportThemeColorSetImpl> get copyWith =>
+      __$$ImportThemeColorSetImplCopyWithImpl<_$ImportThemeColorSetImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AppThemeColorSetImplToJson(
+    return _$$ImportThemeColorSetImplToJson(
       this,
     );
   }
 }
 
-abstract class _AppThemeColorSet implements AppThemeColorSet {
-  const factory _AppThemeColorSet(
+abstract class _ImportThemeColorSet implements ImportThemeColorSet {
+  const factory _ImportThemeColorSet(
       {required final String themeName,
       required final AppTextColorScheme textColorScheme,
       required final AppIconColorScheme iconColorScheme,
@@ -500,13 +433,11 @@ abstract class _AppThemeColorSet implements AppThemeColorSet {
       required final AppBackgroundColorScheme backgroundColorScheme,
       required final AppFillColorScheme fillColorScheme,
       required final AppSurfaceColorScheme surfaceColorScheme,
-      required final AppBrandColorScheme brandColorScheme,
-      required final AppSurfaceContainerColorScheme surfaceContainerColorScheme,
-      required final AppOtherColorsColorScheme
-          otherColorsColorScheme}) = _$AppThemeColorSetImpl;
+      required final AppSurfaceContainerColorScheme
+          surfaceContainerColorScheme}) = _$ImportThemeColorSetImpl;
 
-  factory _AppThemeColorSet.fromJson(Map<String, dynamic> json) =
-      _$AppThemeColorSetImpl.fromJson;
+  factory _ImportThemeColorSet.fromJson(Map<String, dynamic> json) =
+      _$ImportThemeColorSetImpl.fromJson;
 
   @override
   String get themeName;
@@ -525,16 +456,12 @@ abstract class _AppThemeColorSet implements AppThemeColorSet {
   @override
   AppSurfaceColorScheme get surfaceColorScheme;
   @override
-  AppBrandColorScheme get brandColorScheme;
-  @override
   AppSurfaceContainerColorScheme get surfaceContainerColorScheme;
-  @override
-  AppOtherColorsColorScheme get otherColorsColorScheme;
 
-  /// Create a copy of AppThemeColorSet
+  /// Create a copy of ImportThemeColorSet
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AppThemeColorSetImplCopyWith<_$AppThemeColorSetImpl> get copyWith =>
+  _$$ImportThemeColorSetImplCopyWith<_$ImportThemeColorSetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

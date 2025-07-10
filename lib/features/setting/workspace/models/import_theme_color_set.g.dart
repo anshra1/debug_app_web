@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_theme_color_set.dart';
+part of 'import_theme_color_set.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AppThemeColorSetImpl _$$AppThemeColorSetImplFromJson(
+_$ImportThemeColorSetImpl _$$ImportThemeColorSetImplFromJson(
         Map<String, dynamic> json) =>
-    _$AppThemeColorSetImpl(
+    _$ImportThemeColorSetImpl(
       themeName: json['themeName'] as String,
       textColorScheme: AppTextColorScheme.fromJson(
           json['textColorScheme'] as Map<String, dynamic>),
@@ -24,16 +24,12 @@ _$AppThemeColorSetImpl _$$AppThemeColorSetImplFromJson(
           json['fillColorScheme'] as Map<String, dynamic>),
       surfaceColorScheme: AppSurfaceColorScheme.fromJson(
           json['surfaceColorScheme'] as Map<String, dynamic>),
-      brandColorScheme: AppBrandColorScheme.fromJson(
-          json['brandColorScheme'] as Map<String, dynamic>),
       surfaceContainerColorScheme: AppSurfaceContainerColorScheme.fromJson(
           json['surfaceContainerColorScheme'] as Map<String, dynamic>),
-      otherColorsColorScheme: AppOtherColorsColorScheme.fromJson(
-          json['otherColorsColorScheme'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$AppThemeColorSetImplToJson(
-        _$AppThemeColorSetImpl instance) =>
+Map<String, dynamic> _$$ImportThemeColorSetImplToJson(
+        _$ImportThemeColorSetImpl instance) =>
     <String, dynamic>{
       'themeName': instance.themeName,
       'textColorScheme': instance.textColorScheme,
@@ -43,7 +39,5 @@ Map<String, dynamic> _$$AppThemeColorSetImplToJson(
       'backgroundColorScheme': instance.backgroundColorScheme,
       'fillColorScheme': instance.fillColorScheme,
       'surfaceColorScheme': instance.surfaceColorScheme,
-      'brandColorScheme': instance.brandColorScheme,
       'surfaceContainerColorScheme': instance.surfaceContainerColorScheme,
-      'otherColorsColorScheme': instance.otherColorsColorScheme,
     };

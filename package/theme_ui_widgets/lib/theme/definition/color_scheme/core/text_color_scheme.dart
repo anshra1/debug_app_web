@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../utils/color_converter.dart';
+import '../../../../utils/color_converter.dart';
 
 part 'text_color_scheme.freezed.dart';
 part 'text_color_scheme.g.dart';

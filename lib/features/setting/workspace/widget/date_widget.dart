@@ -8,7 +8,7 @@ import 'package:debug_app_web/features/setting/workspace/cubit/apperence_state.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:theme_ui_widgets/theme/app_theme.dart';
+import 'package:theme_ui_widgets/app_theme.dart';
 
 class DateTimeSettingsWidget extends HookWidget {
   const DateTimeSettingsWidget({super.key});

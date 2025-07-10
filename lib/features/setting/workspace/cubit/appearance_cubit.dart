@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart' as path;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_ui_widgets/theme/definition/text_style/app_text_style.dart';
-import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
+import 'package:theme_ui_widgets/theme_ui_widgets.dart' show AppThemeData;
 
 enum UserTimeFormat {
   twelveHour('12h'),

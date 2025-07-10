@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme_ui_widgets/theme/app_theme.dart';
+import 'package:theme_ui_widgets/app_theme.dart';
 
 /// Predefined divider variants for common use cases
 ///

@@ -10,8 +10,8 @@ import 'package:debug_app_web/features/setting/workspace/widget/date_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:theme_ui_widgets/theme/app_theme.dart';
-import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
+import 'package:theme_ui_widgets/app_theme.dart';
+import 'package:theme_ui_widgets/theme/definition/app_theme_data.dart';
 
 void main() {
   group('DateTimeSettingsWidget Integration Tests', () {

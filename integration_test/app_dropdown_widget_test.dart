@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:theme_ui_widgets/theme/app_theme.dart';
-import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
+import 'package:theme_ui_widgets/app_theme.dart';
+import 'package:theme_ui_widgets/theme/definition/app_theme_data.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

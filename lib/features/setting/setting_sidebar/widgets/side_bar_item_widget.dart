@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:theme_ui_widgets/theme/app_theme.dart';
+import 'package:theme_ui_widgets/theme_ui_widgets.dart' show AppTheme;
 
 // =============================================================================
 // CONFIG CLASS FOR STYLING

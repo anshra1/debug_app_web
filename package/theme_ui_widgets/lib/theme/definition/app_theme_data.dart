@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'border_radius/border_radius.dart';
-import 'color_scheme/badge_color_scheme.dart';
+import 'color_scheme/brand/badge_color_scheme.dart';
 import 'color_scheme/color_scheme.dart';
 import 'shadow/shadow.dart';
 import 'spacing/spacing.dart';
 import 'text_style/app_text_style.dart';
 
-part 'theme_data.freezed.dart';
-part 'theme_data.g.dart';
+part 'app_theme_data.freezed.dart';
+part 'app_theme_data.g.dart';
 
 /// [AppThemeData] defines the structure of the design system, and contains
 /// the data that all child widgets will have access to.

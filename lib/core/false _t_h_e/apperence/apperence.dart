@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
+import 'package:theme_ui_widgets/theme/definition/app_theme_data.dart';
 
 /// [AppFlutterTheme] converts design tokens defined in [AppThemeData]
 /// to Flutter's native [ThemeData] format.

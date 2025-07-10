@@ -13,7 +13,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:theme_ui_widgets/theme/app_theme.dart';
+import 'package:theme_ui_widgets/animated_theme.dart';
+import 'package:theme_ui_widgets/app_theme.dart';
 
 class AppConfig {
   const AppConfig._();
@@ -82,7 +83,7 @@ class AppContainer extends HookWidget {
         final appearanceCubit = context.read<AppearanceCubit>();
         final isDark = appearanceCubit.isDarkMode;
 
-        return AppTheme(
+        return AnimatedAppTheme(
           data: appearanceCubit.currentThemeData,
           child: AnnotatedRegion<SystemUiOverlayStyle>(
             value: isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,

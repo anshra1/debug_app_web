@@ -4,19 +4,12 @@ import 'dart:ui';
 
 import 'package:debug_app_web/core/manager/file_manager/interfaces/decoder.dart';
 import 'package:debug_app_web/core/utils/utils/hex_color_converter.dart';
-import 'package:debug_app_web/features/setting/workspace/models/app_theme_color_set.dart';
 import 'package:debug_app_web/features/setting/workspace/models/app_theme_set.dart';
+import 'package:debug_app_web/features/setting/workspace/models/import_theme_color_set.dart';
 import 'package:path/path.dart' as path;
-import 'package:theme_ui_widgets/theme/definition/color_scheme/background_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/badge_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/border_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/brand_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/fill_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/icon_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/other_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/surface_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/surface_container_color_scheme.dart';
-import 'package:theme_ui_widgets/theme/definition/color_scheme/text_color_scheme.dart';
+import 'package:theme_ui_widgets/theme/definition/color_scheme/core/text_color_scheme.dart';
+import 'package:theme_ui_widgets/theme_ui_widgets.dart';
+
 
 class ThemeSetDecoder implements Decoder<AppThemeSet> {
   @override
@@ -80,14 +73,14 @@ class ThemeSetDecoder implements Decoder<AppThemeSet> {
       final processedLightJson = HexColorConverter.convertHexColorsInJson(
         lightThemeJson as Map<String, dynamic>,
       );
-      final lightThemeColors = AppThemeColorSet.fromJson(processedLightJson);
+      final lightThemeColors = ImportThemeColorSet.fromJson(processedLightJson);
 
       // Read and parse dark theme
       final darkThemeFile = File('${directory.path}/dark.json');
       final darkThemeJson = jsonDecode(await darkThemeFile.readAsString());
       final processedDarkJson =
           HexColorConverter.convertHexColorsInJson(darkThemeJson as Map<String, dynamic>);
-      final darkThemeColors = AppThemeColorSet.fromJson(processedDarkJson);
+      final darkThemeColors = ImportThemeColorSet.fromJson(processedDarkJson);
 
       // Validate both themes
       _validateThemeColors(lightThemeColors);
@@ -104,7 +97,7 @@ class ThemeSetDecoder implements Decoder<AppThemeSet> {
     }
   }
 
-  void _validateThemeColors(AppThemeColorSet themeColors) {
+  void _validateThemeColors(ImportThemeColorSet themeColors) {
     // Validate that all required color schemes are present
     _validateTextColorScheme(themeColors.textColorScheme);
     _validateIconColorScheme(themeColors.iconColorScheme);
@@ -113,9 +106,9 @@ class ThemeSetDecoder implements Decoder<AppThemeSet> {
     _validateBackgroundColorScheme(themeColors.backgroundColorScheme);
     _validateFillColorScheme(themeColors.fillColorScheme);
     _validateSurfaceColorScheme(themeColors.surfaceColorScheme);
-    _validateBrandColorScheme(themeColors.brandColorScheme);
+   
     _validateSurfaceContainerColorScheme(themeColors.surfaceContainerColorScheme);
-    _validateOtherColorsColorScheme(themeColors.otherColorsColorScheme);
+
   }
 
   void _validateTextColorScheme(AppTextColorScheme textColorScheme) {

@@ -1,7 +1,7 @@
 import 'package:debug_app_web/core/widgets/atoms/display/app_header_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:theme_ui_widgets/theme/app_theme.dart';
-import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
+import 'package:theme_ui_widgets/app_theme.dart' show AppTheme;
+import 'package:theme_ui_widgets/theme/definition/app_theme_data.dart';
 
 /// Appearance Section - Single Responsibility: Theme mode selection
 class ThemeModeSelectionWidget extends StatelessWidget {

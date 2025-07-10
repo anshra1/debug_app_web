@@ -1,9 +1,28 @@
 import 'dart:ui';
 
-import 'package:debug_app_web/features/setting/workspace/models/app_theme_color_set.dart';
+import 'package:debug_app_web/features/setting/workspace/models/import_theme_color_set.dart';
 import 'package:theme_ui_widgets/theme/data/shared.dart';
+import 'package:theme_ui_widgets/theme/definition/app_theme_data.dart' show AppThemeData;
+import 'package:theme_ui_widgets/theme/definition/color_scheme/color_scheme.dart' show AppOtherColorsColorScheme;
 import 'package:theme_ui_widgets/theme/definition/text_style/app_text_style.dart';
-import 'package:theme_ui_widgets/theme/definition/theme_data.dart';
+import 'package:theme_ui_widgets/theme_ui_widgets.dart' show AppBrandColorScheme;
+
+   const brandColorScheme = AppBrandColorScheme(
+      skyline: Color(0xFF00B5FF),
+      aqua: Color(0xFF00C8FF),
+      violet: Color(0xFF9327FF),
+      amethyst: Color(0xFF8427E0),
+      berry: Color(0xFFE3006D),
+      coral: Color(0xFFFB006D),
+      golden: Color(0xFFF7931E),
+      amber: Color(0xFFFFBD00),
+      lemon: Color(0xFFFFCE00),
+    );
+
+    const otherColorsColorScheme = AppOtherColorsColorScheme(
+      textHighlight: Color(0xFF00B5FF),
+    );
+
 
 class AppThemeSet {
   AppThemeSet({
@@ -15,12 +34,11 @@ class AppThemeSet {
   });
 
   final String themeName;
-  final AppThemeColorSet lightThemeColors;
-  final AppThemeColorSet darkThemeColors;
+  final ImportThemeColorSet lightThemeColors;
+  final ImportThemeColorSet darkThemeColors;
   final String? fontFamily;
   final bool isInbuilt;
 
-  
   AppThemeData getLightTheme() {
     return AppThemeData(
       themeName: themeName,
@@ -35,9 +53,9 @@ class AppThemeSet {
       borderRadius: AppSharedTokens.buildBorderRadius(),
       spacing: AppSharedTokens.buildSpacing(),
       shadow: AppSharedTokens.buildShadow(Brightness.light),
-      brandColorScheme: lightThemeColors.brandColorScheme,
+      brandColorScheme: brandColorScheme,
       surfaceContainerColorScheme: lightThemeColors.surfaceContainerColorScheme,
-      otherColorsColorScheme: lightThemeColors.otherColorsColorScheme,
+      otherColorsColorScheme: otherColorsColorScheme,
     );
   }
 
@@ -55,11 +73,9 @@ class AppThemeSet {
       borderRadius: AppSharedTokens.buildBorderRadius(),
       spacing: AppSharedTokens.buildSpacing(),
       shadow: AppSharedTokens.buildShadow(Brightness.dark),
-      brandColorScheme: darkThemeColors.brandColorScheme,
+      brandColorScheme: brandColorScheme,
       surfaceContainerColorScheme: darkThemeColors.surfaceContainerColorScheme,
-      otherColorsColorScheme: darkThemeColors.otherColorsColorScheme,
+      otherColorsColorScheme: otherColorsColorScheme,
     );
   }
 }
-
-

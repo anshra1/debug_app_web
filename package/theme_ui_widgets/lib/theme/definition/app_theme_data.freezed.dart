@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'theme_data.dart';
+part of 'app_theme_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -24,20 +24,16 @@ mixin _$AppThemeData {
   AppTextColorScheme get textColorScheme => throw _privateConstructorUsedError;
   AppTextStyle get textStyle => throw _privateConstructorUsedError;
   AppIconColorScheme get iconColorScheme => throw _privateConstructorUsedError;
-  AppBorderColorScheme get borderColorScheme =>
-      throw _privateConstructorUsedError;
-  AppBadgeColorScheme get badgeColorScheme =>
-      throw _privateConstructorUsedError;
+  AppBorderColorScheme get borderColorScheme => throw _privateConstructorUsedError;
+  AppBadgeColorScheme get badgeColorScheme => throw _privateConstructorUsedError;
   AppBackgroundColorScheme get backgroundColorScheme =>
       throw _privateConstructorUsedError;
   AppFillColorScheme get fillColorScheme => throw _privateConstructorUsedError;
-  AppSurfaceColorScheme get surfaceColorScheme =>
-      throw _privateConstructorUsedError;
+  AppSurfaceColorScheme get surfaceColorScheme => throw _privateConstructorUsedError;
   AppBorderRadius get borderRadius => throw _privateConstructorUsedError;
   AppSpacing get spacing => throw _privateConstructorUsedError;
   AppShadow get shadow => throw _privateConstructorUsedError;
-  AppBrandColorScheme get brandColorScheme =>
-      throw _privateConstructorUsedError;
+  AppBrandColorScheme get brandColorScheme => throw _privateConstructorUsedError;
   AppSurfaceContainerColorScheme get surfaceContainerColorScheme =>
       throw _privateConstructorUsedError;
   AppOtherColorsColorScheme get otherColorsColorScheme =>
@@ -49,14 +45,12 @@ mixin _$AppThemeData {
   /// Create a copy of AppThemeData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AppThemeDataCopyWith<AppThemeData> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AppThemeDataCopyWith<AppThemeData> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AppThemeDataCopyWith<$Res> {
-  factory $AppThemeDataCopyWith(
-          AppThemeData value, $Res Function(AppThemeData) then) =
+  factory $AppThemeDataCopyWith(AppThemeData value, $Res Function(AppThemeData) then) =
       _$AppThemeDataCopyWithImpl<$Res, AppThemeData>;
   @useResult
   $Res call(
@@ -222,8 +216,7 @@ class _$AppThemeDataCopyWithImpl<$Res, $Val extends AppThemeData>
   @override
   @pragma('vm:prefer-inline')
   $AppBorderColorSchemeCopyWith<$Res> get borderColorScheme {
-    return $AppBorderColorSchemeCopyWith<$Res>(_value.borderColorScheme,
-        (value) {
+    return $AppBorderColorSchemeCopyWith<$Res>(_value.borderColorScheme, (value) {
       return _then(_value.copyWith(borderColorScheme: value) as $Val);
     });
   }
@@ -243,8 +236,7 @@ class _$AppThemeDataCopyWithImpl<$Res, $Val extends AppThemeData>
   @override
   @pragma('vm:prefer-inline')
   $AppBackgroundColorSchemeCopyWith<$Res> get backgroundColorScheme {
-    return $AppBackgroundColorSchemeCopyWith<$Res>(_value.backgroundColorScheme,
-        (value) {
+    return $AppBackgroundColorSchemeCopyWith<$Res>(_value.backgroundColorScheme, (value) {
       return _then(_value.copyWith(backgroundColorScheme: value) as $Val);
     });
   }
@@ -264,8 +256,7 @@ class _$AppThemeDataCopyWithImpl<$Res, $Val extends AppThemeData>
   @override
   @pragma('vm:prefer-inline')
   $AppSurfaceColorSchemeCopyWith<$Res> get surfaceColorScheme {
-    return $AppSurfaceColorSchemeCopyWith<$Res>(_value.surfaceColorScheme,
-        (value) {
+    return $AppSurfaceColorSchemeCopyWith<$Res>(_value.surfaceColorScheme, (value) {
       return _then(_value.copyWith(surfaceColorScheme: value) as $Val);
     });
   }
@@ -314,8 +305,7 @@ class _$AppThemeDataCopyWithImpl<$Res, $Val extends AppThemeData>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AppSurfaceContainerColorSchemeCopyWith<$Res>
-      get surfaceContainerColorScheme {
+  $AppSurfaceContainerColorSchemeCopyWith<$Res> get surfaceContainerColorScheme {
     return $AppSurfaceContainerColorSchemeCopyWith<$Res>(
         _value.surfaceContainerColorScheme, (value) {
       return _then(_value.copyWith(surfaceContainerColorScheme: value) as $Val);
@@ -327,16 +317,15 @@ class _$AppThemeDataCopyWithImpl<$Res, $Val extends AppThemeData>
   @override
   @pragma('vm:prefer-inline')
   $AppOtherColorsColorSchemeCopyWith<$Res> get otherColorsColorScheme {
-    return $AppOtherColorsColorSchemeCopyWith<$Res>(
-        _value.otherColorsColorScheme, (value) {
+    return $AppOtherColorsColorSchemeCopyWith<$Res>(_value.otherColorsColorScheme,
+        (value) {
       return _then(_value.copyWith(otherColorsColorScheme: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$AppThemeDataImplCopyWith<$Res>
-    implements $AppThemeDataCopyWith<$Res> {
+abstract class _$$AppThemeDataImplCopyWith<$Res> implements $AppThemeDataCopyWith<$Res> {
   factory _$$AppThemeDataImplCopyWith(
           _$AppThemeDataImpl value, $Res Function(_$AppThemeDataImpl) then) =
       __$$AppThemeDataImplCopyWithImpl<$Res>;
@@ -547,12 +536,10 @@ class _$AppThemeDataImpl implements _AppThemeData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppThemeDataImpl &&
-            (identical(other.themeName, themeName) ||
-                other.themeName == themeName) &&
+            (identical(other.themeName, themeName) || other.themeName == themeName) &&
             (identical(other.textColorScheme, textColorScheme) ||
                 other.textColorScheme == textColorScheme) &&
-            (identical(other.textStyle, textStyle) ||
-                other.textStyle == textStyle) &&
+            (identical(other.textStyle, textStyle) || other.textStyle == textStyle) &&
             (identical(other.iconColorScheme, iconColorScheme) ||
                 other.iconColorScheme == iconColorScheme) &&
             (identical(other.borderColorScheme, borderColorScheme) ||
@@ -571,10 +558,8 @@ class _$AppThemeDataImpl implements _AppThemeData {
             (identical(other.shadow, shadow) || other.shadow == shadow) &&
             (identical(other.brandColorScheme, brandColorScheme) ||
                 other.brandColorScheme == brandColorScheme) &&
-            (identical(other.surfaceContainerColorScheme,
-                    surfaceContainerColorScheme) ||
-                other.surfaceContainerColorScheme ==
-                    surfaceContainerColorScheme) &&
+            (identical(other.surfaceContainerColorScheme, surfaceContainerColorScheme) ||
+                other.surfaceContainerColorScheme == surfaceContainerColorScheme) &&
             (identical(other.otherColorsColorScheme, otherColorsColorScheme) ||
                 other.otherColorsColorScheme == otherColorsColorScheme));
   }
@@ -613,7 +598,7 @@ class _$AppThemeDataImpl implements _AppThemeData {
       this,
     );
   }
-  
+
   @override
   AppThemeData lerpWith(AppThemeData other, double t) {
     return AppThemeData(
@@ -641,25 +626,24 @@ class _$AppThemeDataImpl implements _AppThemeData {
 
 abstract class _AppThemeData implements AppThemeData {
   const factory _AppThemeData(
-      {required final String themeName,
-      required final AppTextColorScheme textColorScheme,
-      required final AppTextStyle textStyle,
-      required final AppIconColorScheme iconColorScheme,
-      required final AppBorderColorScheme borderColorScheme,
-      required final AppBadgeColorScheme badgeColorScheme,
-      required final AppBackgroundColorScheme backgroundColorScheme,
-      required final AppFillColorScheme fillColorScheme,
-      required final AppSurfaceColorScheme surfaceColorScheme,
-      required final AppBorderRadius borderRadius,
-      required final AppSpacing spacing,
-      required final AppShadow shadow,
-      required final AppBrandColorScheme brandColorScheme,
-      required final AppSurfaceContainerColorScheme surfaceContainerColorScheme,
-      required final AppOtherColorsColorScheme
-          otherColorsColorScheme}) = _$AppThemeDataImpl;
+          {required final String themeName,
+          required final AppTextColorScheme textColorScheme,
+          required final AppTextStyle textStyle,
+          required final AppIconColorScheme iconColorScheme,
+          required final AppBorderColorScheme borderColorScheme,
+          required final AppBadgeColorScheme badgeColorScheme,
+          required final AppBackgroundColorScheme backgroundColorScheme,
+          required final AppFillColorScheme fillColorScheme,
+          required final AppSurfaceColorScheme surfaceColorScheme,
+          required final AppBorderRadius borderRadius,
+          required final AppSpacing spacing,
+          required final AppShadow shadow,
+          required final AppBrandColorScheme brandColorScheme,
+          required final AppSurfaceContainerColorScheme surfaceContainerColorScheme,
+          required final AppOtherColorsColorScheme otherColorsColorScheme}) =
+      _$AppThemeDataImpl;
 
-  factory _AppThemeData.fromJson(Map<String, dynamic> json) =
-      _$AppThemeDataImpl.fromJson;
+  factory _AppThemeData.fromJson(Map<String, dynamic> json) = _$AppThemeDataImpl.fromJson;
 
   @override
   String get themeName;
